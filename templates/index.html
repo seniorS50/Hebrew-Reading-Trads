@@ -5,26 +5,27 @@
 {% endblock %}
 
 {% block main %}
-<script>
-    var map = L.map('map').setView([51.505, -0.09], 13);
 
-    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(map);
+<div class="split left">
+    <div class="centered">
+        <h2>Map and shit</h2>
+        <p>
+            <div id="map" style="width: 600px; height: 400px;"></div>
+            <script>
+                var map = L.map('map').setView([51.505, -0.09], 13);
+                L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 19,
+                attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+                }).addTo(map);
+            </script>
+        </p>
+    </div>
+</div>
 
-    L.marker([51.5, -0.09]).addTo(map)
-        .bindPopup('A pretty CSS3 popup.<br> Easily customizable.')
-        .openPopup();
-</script>
-
-<div id="map"></div>
-
-<table>
-    <tr>
-        Vote Corbyn
-    </tr>
-    <tr>
-        Vote Johnson
-    </tr>
-</table>
+<div class="split right">
+    <div class="centered">
+        <h2>Words and shit</h2>
+        <p>L'chaim</p>
+    </div>
+</div>
 {% endblock %}

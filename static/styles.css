@@ -7,21 +7,14 @@ nav .navbar-brand
 #map { height: 180px; }
 
 /* Colors for brand */
-nav .navbar-brand .blue
+nav .navbar-brand .title
 {
-    color: #537fbe;
+    color: #DDD0C8;
 }
-nav .navbar-brand .red
+
+nav .nav-link
 {
-    color: #ea433b;
-}
-nav .navbar-brand .yellow
-{
-    color: #f5b82e;
-}
-nav .navbar-brand .green
-{
-    color: #2e944b;
+    color: #DDD0C8;
 }
 
 table {
@@ -39,3 +32,36 @@ td, th {
 tr:nth-child(even) {
     background-color: #dddddd;
 }
+
+/* Split the screen in half */
+.split {
+    height: 100%;
+    width: 50%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    overflow-x: hidden;
+  }
+
+body {
+    background-color: #DDD0C8
+}
+
+  /* Control the left side */
+.left {
+    left: 0;
+  }
+
+  /* Control the right side */
+  .right {
+    right: 0;
+  }
+
+  /* If you want the content centered horizontally and vertically */
+  .centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
