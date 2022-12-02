@@ -4,6 +4,8 @@ nav .navbar-brand
     font-size: xx-large;
 }
 
+#map { height: 180px; }
+
 /* Colors for brand */
 nav .navbar-brand .blue
 {
