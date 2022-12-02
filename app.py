@@ -6,9 +6,11 @@ from flask_session import Session
 from tempfile import mkdtemp
 from werkzeug.security import check_password_hash, generate_password_hash
 import time
+import json
 
 app = Flask(__name__)
 
 @app.route("/")
 def index():
-    return render_template("index.html")
+    cities = open('city_locs.json')
+    return render_template("index.html", cities=cities)

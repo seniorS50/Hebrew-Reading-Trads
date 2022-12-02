@@ -12,11 +12,16 @@
         <p>
             <div id="map" style="width: 600px; height: 400px;"></div>
             <script>
-                var map = L.map('map').setView([51.505, -0.09], 13);
+                var map = L.map('map').setView([35, 34], 4);
                 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 maxZoom: 19,
                 attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
                 }).addTo(map);
+                var marker = L.marker([33.3061701, 44.3872213]).addTo(map);
+                jsondoc = open
+                //Open the fucking document you wanker
+                const cities = JSON.parse('hebrew-reading-trads/city_locs.json');
+                var marker2 = L.marker([cities[0]['Latitude'], cities[0]['Longitude']]).addTo(map);
             </script>
         </p>
     </div>
@@ -25,7 +30,21 @@
 <div class="split right">
     <div class="centered">
         <h2>Words and shit</h2>
-        <p>L'chaim</p>
+        <p>
+            <table class="table table-striped">
+                <thead>
+                    <tr></tr>
+                      <th scope="col">Country</th>
+                      <th scope="col">City</th>
+                      <th scope="col">HULTP</th>
+                      <th scope="col">Book</th>
+                      <th scope="col">Chapter</th>
+                      <th scope="col">Verses</th>
+                      <th scope="col">Name</th>
+                    </tr>
+                </thead>
+          </table>
+        </p>
     </div>
 </div>
 {% endblock %}
