@@ -14,14 +14,14 @@ app = Flask(__name__)
 def index():
     with open('FileNames.json') as f:
         data = json.load(f)
-        
+
     ##city = input("Which city?")
 
     return render_template("index.html", entry=data)
 
 
 @app.route("/search", methods = ['GET'])
-def index():
+def search():
     with open('FileNames.json') as f:
         data = json.load(f)
 
@@ -29,4 +29,4 @@ def index():
     if request.args:
         data = request.args["arg1"]
 
-    return render_template("index.html", entry=data)
+    return render_template("index.html", entry="")
