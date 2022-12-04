@@ -10,7 +10,17 @@ import json
 
 app = Flask(__name__)
 
-@app.route("/", methods = ['GET'])
+@app.route("/")
+def index():
+    with open('FileNames.json') as f:
+        data = json.load(f)
+        
+    ##city = input("Which city?")
+
+    return render_template("index.html", entry=data)
+
+
+@app.route("/search", methods = ['GET'])
 def index():
     with open('FileNames.json') as f:
         data = json.load(f)
