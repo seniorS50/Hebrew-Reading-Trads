@@ -81,28 +81,10 @@ def search_entries(term):
     with open('FileNames.json') as f:
         data = json.load(f)
     results = []
-    # See if we get city hits, if so don't search for anything else
+    # Also, replace spaces with "_" just in case
+    term = term.replace(" ", "_")
+    print(term)
     for entry in data:
-        if term.lower() in entry["City"].lower():
-            results.append(entry)
-    if len(results) > 0:
-        return results
-    # Now search for countries if city had no results
-    for entry in data:
-        if term.lower() in entry["Country"].lower():
-            results.append(entry)
-    if len(results) > 0:
-        return results
-    # If we couldn't find in country, let's find in book!
-    for entry in data:
-        if term.lower() in entry["Book"].lower():
-            results.append(entry)
-    if len(results) > 0:
-        return results
-    # Just in case, add functionality to search by HULTP
-    for entry in data:
-        if term == str(entry["HULTP"]):
+        if term in str(entry.values()):
             results.append(entry)
     return results
-    
-print(search_entries("SDFas"))
