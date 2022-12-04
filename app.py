@@ -12,5 +12,4 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
-    cities = open('city_locs.json')
-    return render_template("index.html", cities=cities)
+    return render_template("index.html")
