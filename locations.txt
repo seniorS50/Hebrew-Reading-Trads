@@ -1,0 +1,175 @@
+Aden:
+Latitude =  12.833333
+Longitude =  44.916667
+
+Problem with: Al Mdid
+Aleppo:
+Latitude =  36.19924
+Longitude =  37.1637253
+
+Amsterdam:
+Latitude =  52.3727598
+Longitude =  4.8936041
+
+Problem with: Ashagah Arar
+Baghdad:
+Latitude =  33.3061701
+Longitude =  44.3872213
+
+Bouguemez:
+Latitude =  31.6360424
+Longitude =  -6.4821075
+
+Bukhara:
+Latitude =  39.7675529
+Longitude =  64.4231326
+
+Cairo:
+Latitude =  30.0443879
+Longitude =  31.2357257
+
+Chalkida:
+Latitude =  38.4623664
+Longitude =  23.5946877
+
+Challa:
+Latitude =  -16.0928974
+Longitude =  -67.6966094
+
+Cochin:
+Latitude =  9.931308
+Longitude =  76.2674136
+
+Dhamar:
+Latitude =  14.7384268
+Longitude =  44.2709597
+
+Djerba:
+Latitude =  33.77339055
+Longitude =  10.885904100766005
+
+Problem with: Dobdou
+Duhok:
+Latitude =  37.042257
+Longitude =  43.0953954
+
+Fes:
+Latitude =  34.0346534
+Longitude =  -5.0161926
+
+Florence:
+Latitude =  43.7698712
+Longitude =  11.2555757
+
+Habban:
+Latitude =  14.290268
+Longitude =  47.136125 
+
+Heet:
+Latitude =  33.6387394
+Longitude =  42.8278537
+
+Herat:
+Latitude =  34.3508273
+Longitude =  62.2164003
+
+Izmir:
+Latitude =  38.4224548
+Longitude =  27.1310699
+
+Kazan:
+Latitude =  55.7823547
+Longitude =  49.1242266
+
+Kerki:
+Latitude =  37.8407881
+Longitude =  65.2063911
+
+Kovno:
+Latitude =  54.8982139
+Longitude =  23.9044817
+
+Kulashi:
+Latitude =  42.2064959
+Longitude =  42.3446657
+
+Kutaisi:
+Latitude =  42.2716078
+Longitude =  42.7054475
+
+Marrakech:
+Latitude =  31.6258257
+Longitude =  -7.9891608
+
+Meknes:
+Latitude =  33.897877
+Longitude =  -5.5320345
+
+Milan:
+Latitude =  45.4641943
+Longitude =  9.1896346
+
+Mogador:
+Latitude =  31.5118281
+Longitude =  -9.7620903
+
+Mosul:
+Latitude =  36.343694049999996
+Longitude =  43.099715597302286
+
+Narva:
+Latitude =  59.3766729
+Longitude =  28.1921457
+
+Nitra:
+Latitude =  48.31295
+Longitude =  18.0894593
+
+Nusaybin:
+Latitude =  37.0691755
+Longitude =  41.2164671
+
+Oni:
+Latitude =  42.66802335
+Longitude =  43.53487037032389
+
+Radaa:
+Latitude =  36.2607061
+Longitude =  59.6228515
+
+Rome:
+Latitude =  41.8933203
+Longitude =  12.4829321
+
+Sadah:
+Latitude =  17.063405
+Longitude =  43.914884
+
+Saddah:
+Latitude =  13.323159
+Longitude =  44.143743
+
+Saqqez:
+Latitude =  36.2427456
+Longitude =  46.2705227
+
+Sefrou:
+Latitude =  33.824898
+Longitude =  -4.833336
+
+Sulaymaniyah:
+Latitude =  35.5570501
+Longitude =  45.4425963
+
+Tafilalt:
+Latitude =  33.9545694
+Longitude =  -6.843093
+
+Taizz:
+Latitude =  13.4115414
+Longitude =  43.5570871
+
+Tashkent:
+Latitude =  41.3123363
+Latitude =  37.1543002
+Longitude =  42.70078692045387
