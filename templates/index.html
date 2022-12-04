@@ -6,8 +6,9 @@
 {% endblock %}
 
 {% block main %}
-<div class="split left">
-    <div class="centered">
+<div class="modal-body row">
+    <div class="col-md-6">
+        <td>
         <h2>Map and shit</h2>
         <p>
             <div id="map" style="width: 600px; height: 400px;"></div>
@@ -340,13 +341,16 @@
                 for (i = 0; i < city['items'].length; i++){
                     var marker = L.marker([city['items'][i]['Latitude'], city['items'][i]['Longitude']]).addTo(map);
                 }
+                function onMapClick(e) {
+                    e.latlng
+                }
+                map.on('click', onMapClick);
             </script>
         </p>
+        </td>
     </div>
-</div>
 
-<div class="split right">
-    <div class="centered">
+    <div class="col-md-6">
         <h2>Words and shit</h2>
         <p>
             <div class="container">
@@ -380,6 +384,6 @@
                 </table>
             </div>
         </p>
-    </div>
+</div>
 </div>
 {% endblock %}
