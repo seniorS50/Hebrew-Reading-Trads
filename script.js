@@ -3,4 +3,4 @@
 //console.log(cities[1]['Latitude'])
 
 import code from './city_locs.json' assert {type: 'json'};
-console.log(code[1]'Latitude')
+console.log(code[1]['Latitude'])
