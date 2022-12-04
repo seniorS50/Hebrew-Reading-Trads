@@ -21,12 +21,17 @@ table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
     width: 100%;
+    max-height: 
 }
 
 td, th {
     border: 1px solid #dddddd;
     text-align: left;
     padding: 8px;
+}
+
+thead {
+  position: sticky;
 }
 
 tr:nth-child(even) {

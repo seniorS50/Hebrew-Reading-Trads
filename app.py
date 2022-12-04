@@ -12,4 +12,8 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
-    return render_template("index.html")
+    with open('FileNames.json') as f:
+        data = json.load(f)
+
+    ##city = input("Which city?")
+    return render_template("index.html", entry=data)

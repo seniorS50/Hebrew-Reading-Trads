@@ -1,4 +1,4 @@
-const cities = JSON.parse([
+const city = {"items": [
    {
       "Country":"Afghanistan",
       "City":"Herat",
@@ -317,10 +317,10 @@ const cities = JSON.parse([
       "Latitude":13.4115414,
       "Longitude":43.5570871
    }
-])
+]};
 var map = L.map('map').setView([35, 34], 4);
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 maxZoom: 19,
 attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 }).addTo(map);
-var marker = L.marker([cities[0]['Latitude'], cities[0]['Longitude']]).addTo(map);
+var marker = L.marker([city['items'][0]['Latitude'], city['items'][0]['Longitude']]).addTo(map);
