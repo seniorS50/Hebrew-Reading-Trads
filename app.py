@@ -17,6 +17,6 @@ def index():
 
     ##city = input("Which city?")
     if request.args:
-        data = request.args[1]
+        data = request.args["arg1"]
 
     return render_template("index.html", entry=data)
