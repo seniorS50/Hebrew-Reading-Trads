@@ -1,4 +1,4 @@
-[
+const cities = JSON.parse([
    {
       "Country":"Afghanistan",
       "City":"Herat",
@@ -317,4 +317,4 @@
       "Latitude":13.4115414,
       "Longitude":43.5570871
    }
-]
+])
