@@ -11,16 +11,14 @@
         <h2>Map and shit</h2>
         <p>
             <div id="map" style="width: 600px; height: 400px;"></div>
-            <script type="module">
-                import code from '/city_locs.json' assert {type: 'json'};
+            <script type="text/javascript" src="city_locs.json">
                 var map = L.map('map').setView([35, 34], 4);
                 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 maxZoom: 19,
                 attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
                 }).addTo(map);
-                var marker = L.marker([33.3061701, 44.3872213]).addTo(map);
-                const cities = JSON.parse(code);
-                var marker2 = L.marker([cities[0]['Latitude'], cities[0]['Longitude']]).addTo(map);
+                const cities = JSON.parse(city_locs.json);
+                var marker = L.marker([cities[0]['Latitude'], cities[0]['Longitude']]).addTo(map);
             </script>
         </p>
     </div>
