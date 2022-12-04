@@ -1,6 +1,38 @@
 from bidi.algorithm import get_display
+import json
 from xml.dom import minidom
 
+def get_Book_Index():
+    # Get info from the index
+    doc = minidom.parse("Books/TanachIndex.xml")
+    index = doc.getElementsByTagName("book")
+    book_info = []
+    for book in index:
+        name = book.getElementsByTagName("name")[0].firstChild.data
+        abbrev = book.getElementsByTagName("abbrev")[0].firstChild.data
+        filename = book.getElementsByTagName("filename")[0].firstChild.data
+        # Get all the chapter data for each book
+        c = book.getElementsByTagName("c")
+        chapters = []
+        for chapter in c:
+            chapters.append({
+                "chps": chapter.getAttribute("n"),
+                "vss": chapter.getElementsByTagName("vs")[0].firstChild.data
+            })
+        book_info.append({
+            "name": name,
+            "abbrev": abbrev,
+            "filename": filename,
+            "chapters": chapters
+        })
+        
+    # return a list of dicts with the following info:
+    # name
+    # abbrevfilename
+    # chapters - a list of dicts with the attributes:
+    #     chp (which chapter)
+    #     vss (which vss)
+    return book_info
 
 def get_Hebrew_Text(book, chapter, firstvs = 1, lastvs = -1):
     # load the index
@@ -44,34 +76,33 @@ def get_Hebrew_Text(book, chapter, firstvs = 1, lastvs = -1):
         hebrew_text.append(verse)
     return hebrew_text
 
-def get_Book_Index():
-    # Get info from the index
-    doc = minidom.parse("Books/TanachIndex.xml")
-    index = doc.getElementsByTagName("book")
-    book_info = []
-    for book in index:
-        name = book.getElementsByTagName("name")[0].firstChild.data
-        abbrev = book.getElementsByTagName("abbrev")[0].firstChild.data
-        filename = book.getElementsByTagName("filename")[0].firstChild.data
-        # Get all the chapter data for each book
-        c = book.getElementsByTagName("c")
-        chapters = []
-        for chapter in c:
-            chapters.append({
-                "chps": chapter.getAttribute("n"),
-                "vss": chapter.getElementsByTagName("vs")[0].firstChild.data
-            })
-        book_info.append({
-            "name": name,
-            "abbrev": abbrev,
-            "filename": filename,
-            "chapters": chapters
-        })
-        
-    # return a list of dicts with the following info:
-    # name
-    # abbrevfilename
-    # chapters - a list of dicts with the attributes:
-    #     chp (which chapter)
-    #     vss (which vss)
-    return book_info
+def search_entries(term):
+    # load all entries
+    with open('FileNames.json') as f:
+        data = json.load(f)
+    results = []
+    # See if we get city hits, if so don't search for anything else
+    for entry in data:
+        if term.lower() in entry["City"].lower():
+            results.append(entry)
+    if len(results) > 0:
+        return results
+    # Now search for countries if city had no results
+    for entry in data:
+        if term.lower() in entry["Country"].lower():
+            results.append(entry)
+    if len(results) > 0:
+        return results
+    # If we couldn't find in country, let's find in book!
+    for entry in data:
+        if term.lower() in entry["Book"].lower():
+            results.append(entry)
+    if len(results) > 0:
+        return results
+    # Just in case, add functionality to search by HULTP
+    for entry in data:
+        if term == str(entry["HULTP"]):
+            results.append(entry)
+    return results
+    
+print(search_entries("SDFas"))
