@@ -12,13 +12,10 @@ with open('FileNames.json') as f:
 
 @app.route("/")
 def index():
-
-    ##city = input("Which city?")
     return render_template("index.html", entry=data)
 
 @app.route("/search", methods = ['GET'])
 def search():
-    ## City = input("Which city?")
     if request.args:
         return render_template("index.html",entry=search_entries(request.args["q"]))
     else:

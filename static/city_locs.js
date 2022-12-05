@@ -343,6 +343,16 @@ const city = {"items": [
         // with the current city as the argument
         .on("click", function(){
             window.location = "search?q=" + city_name
+            // console.log('hello');
+            // e.preventDefault();
+            // $.ajax({
+            //   type:'GET',
+            //   url:"/search?q=" + city_name,
+            //   success:function()
+            //   {
+            //     alert('saved');
+            //   }
+            // })
         });
     }
 

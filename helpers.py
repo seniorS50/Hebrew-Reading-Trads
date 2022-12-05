@@ -113,7 +113,6 @@ def search_entries(term):
     term = term.replace(" ", "_")
     print(term)
     for entry in data:
-        # if term.lower() in ( n.lower() for n in str(entry.values())):
         # hacky way to check for combined name but it works. In the future would reconfigure JSON file
         if term.lower() in str(entry.values()).lower() or term.lower() in (entry["Reader_1st_Name"] + "_" + entry["Reader_2nd_Name"]).lower():
             print((entry["Reader_1st_Name"] + " " + entry["Reader_2nd_Name"]).lower())
