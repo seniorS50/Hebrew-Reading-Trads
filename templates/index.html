@@ -349,8 +349,14 @@
                         data: {
                             q: coords
                         },
-                })
-                }
+                        success: function (response_data) {
+                            alert("success");
+                        }
+                        //failure: function (response_data) {
+                           // alert("failure");
+                        //}
+                });
+                };
                 map.on('click', onMapClick);
             </script>
         </p>
