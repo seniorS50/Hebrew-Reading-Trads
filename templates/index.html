@@ -344,11 +344,11 @@
                 function onMapClick(e) {
                     const coords = e.latlng
                     $.ajax({
-                        url: '{{ url_for('view.path') }}',
-                        type: 'POST',
+                        url: '/search',
+                        type: 'GET',
                         data: {
-                            name: name
-                },
+                            q: coords
+                        },
                 })
                 }
                 map.on('click', onMapClick);
