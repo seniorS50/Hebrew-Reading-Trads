@@ -1,4 +1,4 @@
-##from bidi.algorithm import get_display
+from bidi.algorithm import get_display
 import json
 from xml.dom import minidom
 
