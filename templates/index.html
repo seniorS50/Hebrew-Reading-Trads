@@ -342,8 +342,13 @@
                     var marker = L.marker([city['items'][i]['Latitude'], city['items'][i]['Longitude']]).addTo(map);
                 }
                 function onMapClick(e) {
-                    $.get("/search", function(e.latlng) {
-                    )
+                    const coords = e.latlng
+                    $.ajax({
+                        url: '{{ url_for('view.path') }}',
+                        type: 'POST',
+                        data: {
+                            name: name
+                },
                 })
                 }
                 map.on('click', onMapClick);
