@@ -349,12 +349,9 @@
                         data: {
                             q: coords
                         },
-                        success: function (response_data) {
-                            alert("success");
+                        failure: function (onMapClick) {
+                            alert("failure");
                         }
-                        //failure: function (response_data) {
-                           // alert("failure");
-                        //}
                 });
                 };
                 map.on('click', onMapClick);
