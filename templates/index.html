@@ -343,7 +343,7 @@
                 }
                 function onMapClick(e) {
                     const coords = e.latlng
-                    $.ajax({
+                    $.get({
                         url: '/process',
                         type: 'GET',
                         data: {
