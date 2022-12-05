@@ -323,10 +323,27 @@ const city = {"items": [
     maxZoom: 19,
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     }).addTo(map);
+    var city_name;
+    var country_name;
     for (i = 0; i < city['items'].length; i++){
-        var marker = L.marker([city['items'][i]['Latitude'], city['items'][i]['Longitude']]).addTo(map);
+        let city_name = city['items'][i]['City'];
+        let country_name = city['items'][i]['Country']
+        var marker = L.marker([city['items'][i]['Latitude'], city['items'][i]['Longitude']]).addTo(map)
+        .bindPopup(country_name +'<br>' + city_name)
+        // Rather than show popup on click, simply show it on mouseover. This way when we click we can search
+        .on('mouseover', function (e) {
+            this.openPopup();
+        });
+        // Close popover on mouse out
+        marker.on('mouseout', function (e) {
+            this.closePopup();
+        })
+        // Write an anonymous function for when the object is clicked. 
+        // There must be a better way to pass in the information to flask, but for now I have hard coded the search URL
+        // with the current city as the argument
+        .on("click", function(){
+            window.location = "search?q=" + city_name
+        });
     }
-    function onMapClick(e) {
-        e.latlng
-    }
-    map.on('click', onMapClick);
+
+    
