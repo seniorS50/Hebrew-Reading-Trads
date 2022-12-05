@@ -26,7 +26,7 @@ def search():
 
 @app.route('/process', methods=['GET'])
 def process_data():
-    coords = request.get_json()
+    coords = request.args()
     if coords:
         return render_template("index.html",entry=search_entries(coords["q"]))
     else:
