@@ -87,3 +87,7 @@ body {
   .mb-3 {
     width: 200px;
   }
+
+  h2{
+    font-family: "Times New Roman", Times, serif;
+  }
