@@ -339,14 +339,9 @@
                 attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
                 }).addTo(map);
                 for (i = 0; i < city['items'].length; i++){
-                    var marker = L.marker([city['items'][i]['Latitude'], city['items'][i]['Longitude']]).addTo(map);
+                    var marker = L.marker([city['items'][i]['Latitude'], city['items'][i]['Longitude']]).setTitle(city['items'][i]['City']).addTo(map);
                 }
                 function onMapClick(e) {
-                    const coords = e.latlng
-                    for (i = 0; i < city['items'].length; i++){
-                        if (coords['lat'] = city['items'][i]['Latitude'] && coords['lng'] = city['items'][i]['Longitude']){
-                            
-                        }
                 };
                 };
                 map.on('click', onMapClick);
