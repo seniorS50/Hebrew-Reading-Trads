@@ -104,8 +104,8 @@ const city = {"items": [
     {
         "Country":"Kurdistan",
         "City":"Narva",
-        "Latitude":59.3766729,
-        "Longitude":28.1921457
+        "Latitude":37.03478988195918, 
+        "Longitude":43.85389860691291
     },
     {
         "Country":"Kurdistan",
