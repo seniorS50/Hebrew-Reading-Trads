@@ -1,4 +1,4 @@
-from bidi.algorithm import get_display
+##from bidi.algorithm import get_display
 import json
 from xml.dom import minidom
 
@@ -25,7 +25,7 @@ def get_Book_Index():
             "filename": filename,
             "chapters": chapters
         })
-        
+
     # return a list of dicts with the following info:
     # name
     # abbrevfilename
@@ -55,7 +55,7 @@ def get_Hebrew_Text(book, chapter, firstvs = 1, lastvs = -1):
         print("invalid verse range")
         firstvs = 1
         lastvs = int(chapters[chapter-1]["vss"])
-    
+
     # load the xml of the specific book
     doc = minidom.parse("Books/" + filename + ".xml")
     # doc.getElementsByTagName returns the NodeList
