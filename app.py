@@ -24,7 +24,7 @@ def search():
     else:
         return render_template("index.html",entry=[])
 
-@app.route('/process', methods=['POST'])
+@app.route('/process', methods=['GET'])
 def process_data():
     coords = request.get_json()
     if coords:
