@@ -23,5 +23,3 @@ def search():
         return render_template("index.html",entry=search_entries(request.args["q"]))
     else:
         return render_template("index.html",entry=[])
-
-@app.route("/search", methods = ['GET'])
