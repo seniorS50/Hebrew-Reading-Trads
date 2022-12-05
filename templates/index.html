@@ -344,7 +344,9 @@
                 function onMapClick(e) {
                     const coords = e.latlng
                     for (i = 0; i < city['items'].length; i++){
-                        if 
+                        if (coords['lat'] = city['items'][i]['Latitude'] && coords['lng'] = city['items'][i]['Longitude']){
+                            
+                        }
                 };
                 };
                 map.on('click', onMapClick);
