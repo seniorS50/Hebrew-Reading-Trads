@@ -12,6 +12,8 @@ with open('FileNames.json') as f:
 
 @app.route("/")
 def index():
+
+    ##city = input("Which city?")
     return render_template("index.html", entry=data)
 
 @app.route("/search", methods = ['GET'])
