@@ -343,13 +343,9 @@
                 }
                 function onMapClick(e) {
                     const coords = e.latlng
-                    $.get({
-                        url: '/process',
-                        type: 'GET',
-                        data: {
-                            q: coords
-                        },
-                });
+                    for (i = 0; i < city['items'].length; i++){
+
+                };
                 };
                 map.on('click', onMapClick);
             </script>
