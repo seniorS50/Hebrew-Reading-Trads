@@ -339,8 +339,8 @@
                 attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
                 }).addTo(map);
                 for (i = 0; i < city['items'].length; i++){
-                    var marker = L.marker([city['items'][i]['Latitude'], city['items'][i]['Longitude']])
-                    .Title(city['items'][i]['City'])
+                    var marker = L.marker([city['items'][i]['Latitude'], city['items'][i]['Longitude']],
+                    Title(city['items'][i]['City']))
                     .addTo(map);
                 }
                 function onMapClick(e) {
