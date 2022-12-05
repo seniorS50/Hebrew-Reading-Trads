@@ -26,4 +26,4 @@ def search():
 
 @app.route('/process', methods=['POST'])
 def process_data():
-    coords = 
+    coords = request.get_json()
