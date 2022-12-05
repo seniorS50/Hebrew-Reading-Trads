@@ -23,3 +23,7 @@ def search():
         return render_template("index.html",entry=search_entries(request.args["q"]))
     else:
         return render_template("index.html",entry=[])
+
+@app.route('/process', methods=['POST'])
+def process_data():
+    coords = 

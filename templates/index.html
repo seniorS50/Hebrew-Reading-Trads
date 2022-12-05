@@ -344,8 +344,8 @@
                 function onMapClick(e) {
                     const coords = e.latlng
                     $.ajax({
-                        url: '/search',
-                        type: 'GET',
+                        url: '/process',
+                        type: 'POST',
                         data: {
                             q: coords
                         },
