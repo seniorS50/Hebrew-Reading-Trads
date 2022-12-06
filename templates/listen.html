@@ -50,6 +50,7 @@
     </div>
     <div class="col-md-6">
         <h2>Passage | פסוק</h2>
+        <h4>{{ entry.Book }} {{ entry.Chapter | replace("_", " ") }}:{{ entry.Verses | replace("_", " ") }}</h4>
         <div dir="rtl" lang="hb" style="text-align: right; width:85%">
             {% for vs in text %}
                 <p>{{ vs.vs }} {{ vs.text }}</p>
