@@ -20,9 +20,10 @@ nav .nav-link
 .custom_table {
   margin: auto;
   float: left;
-  overflow-x: auto;
   height: 500px;
   overflow: scroll;
+  margin: 0 auto;
+  overflow-x: scroll;
 }
 
 td, th {
