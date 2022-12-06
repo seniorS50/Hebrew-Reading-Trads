@@ -1,7 +1,5 @@
-import os
-from flask import Flask, flash, redirect, render_template, request, session, send_from_directory
+from flask import Flask, render_template, request
 from helpers import search_entries, get_hebrew_text_HULTP
-import time
 import json
 
 app = Flask(__name__)
