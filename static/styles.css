@@ -21,7 +21,6 @@ nav .nav-link
     font-family: arial, sans-serif;
     border-collapse: collapse;
     float: left;
-    overflow: auto;
     max-height: 500px;
     max width: auto;
     overflow: scroll;
