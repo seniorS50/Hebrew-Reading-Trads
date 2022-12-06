@@ -17,13 +17,15 @@ nav .nav-link
     color: #DDD0C8;
 }
 
-table {
+.custom_table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
     float: left;
+    overflow: auto;
     max-height: 500px;
-    max-height: 500px;
+    max width: auto;
     overflow: scroll;
+    overflow-x: auto;
 }
 
 td, th {
