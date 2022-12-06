@@ -18,11 +18,10 @@ nav .nav-link
 }
 
 .custom_table {
-  margin: auto;
   float: left;
-  height: 500px;
-  overflow: scroll;
-  margin: 0 auto;
+  max-height: 500px;
+  max-width: 600px;
+  overflow-y: scroll;
   overflow-x: scroll;
 }
 
