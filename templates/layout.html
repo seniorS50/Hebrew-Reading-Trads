@@ -31,22 +31,29 @@
         <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
         integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
         crossorigin=""></script>
-        
 
-        <title>L'chaim</title>
+
+        <title>L'chaim: {% block title %}{% endblock %}</title>
+        <link rel="icon" type="image/x-icon" href="https://w1.pngwing.com/pngs/688/182/png-transparent-shoe-purple-line-aleph-violet-electric-blue-thumbnail.png">
+
     </head>
 
     <body>
         <nav class="navbar navbar-expand-md" style="background-color: #323232;">
             <div class="container-fluid">
-                <a class="navbar-brand" href="/"><span class="title">Hebrew Reading Traditions</span></a>
+                <a class="navbar-brand" href="/"><span class="title">Hebrew Reading Traditions | דרכי קריאה לפי תרבות
+                </span></a>
                 <button aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-bs-target="#navbar" data-bs-toggle="collapse" type="button">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbar">
                     <ul class="navbar-nav me-auto mt-2">
-                        <li class="nav-item"><a class="nav-link" href="/not_israel">Not Israel</a></li>
                     </ul>
+                    <form action="/search" method="get">
+                        <div class="mb-3">
+                            <input autocomplete="on" autofocus class="form-control mx-auto w-auto" id="q" name="q" placeholder="filter" type="text" >
+                        </div>
+                    </form>
 
                 </div>
             </div>
