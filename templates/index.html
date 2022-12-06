@@ -6,6 +6,7 @@
 {% endblock %}
 
 {% block main %}
+<<<<<<< HEAD
 <div class="modal-body row">
     <div class="col-md-6">
         <td>
@@ -370,6 +371,26 @@
         <p>
             <div class="container">
                 <table class="table table-striped table-hover position-static">
+=======
+    <div class="modal-body row">
+        <div class="col-md-6">
+            <td>
+                <h2>Interactive Map | מפה </h2>
+                <div class="container">
+                    <div id="map" style="width: 600px; height: 400px;"></div>
+                    <script type="text/javascript" src="/static/city_locs.js"></script>
+            </td>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <h2>Database | מאגר מידע
+        </h2>
+            <div class="row">
+            </div>
+            <div class = "custom_table table-fixed">
+                <table class="table table-striped table-hover position-static" id="tableId">
+>>>>>>> c6cda32c4db6add4920298fad9eab4c140619272
                     <thead>
                         <tr class = "sticky-top">
                             <th scope="col">Country</th>
@@ -380,10 +401,12 @@
                             <th scope="col">Reader Name</th>
                             <th scope="col">Year</th>
                             <th scope="col">HULTP</th>
+                            <th scope="col">Audio</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody >
                         {% for file in entry %}
+<<<<<<< HEAD
                             <tr>
                                 <th>{{ file.Country }}</th>
                                 <td>{{ file.City }}</td>
@@ -391,14 +414,28 @@
                                 <td>{{ file.Chapter }}</td>
                                 <td>{{ file.Verses }}</td>
                                 <td>{{ file.Reader_1st_Name }} {{ file.Reader_2nd_Name }}</td>
+=======
+                            <tr href="/not_israel">
+                                <!-- use a jinja filter to replace all "_" with a space -->
+                                <th>{{ file.Country | replace("_", " ") }}</th>
+                                <td>{{ file.City | replace("_", " ") }}</td>
+                                <td>{{ file.Book | replace("_", " ") }}</td>
+                                <!-- combine chapter and verse into reference -->
+                                <td>{{ file.Chapter | replace("_", " ") }}:{{ file.Verses | replace("_", " ") }}</td>
+                                <td>{{ file.Reader_1st_Name | replace("_", " ") }} {{ file.Reader_2nd_Name | replace("_", " ") }}</td>
+>>>>>>> c6cda32c4db6add4920298fad9eab4c140619272
                                 <td>{{ file.Year }}</td>
                                 <td>{{ file.HULTP }}</td>
+                                <td>
+                                    <input type=button onClick="location.href='../listen?HULTP={{ file.HULTP }}'"
+                                    value='listen'>
+                                </td>
                             </tr>
                         {% endfor %}
                     </tbody>
                 </table>
             </div>
         </p>
-</div>
+    </div>
 </div>
 {% endblock %}

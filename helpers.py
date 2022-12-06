@@ -76,12 +76,12 @@ def get_hebrew_hext(book, chapter, firstvs = 1, lastvs = -1):
             # f = open('output.txt', 'a', encoding="utf-8")
             # f.write(word.firstChild.data + " ")
         # f.write(f"\n")
-        hebrew_text.append(verse)
+        hebrew_text.append({"vs": i + 1, "text":verse})
         # f.close()
     return hebrew_text
 
 # Get book, chapter, vs based on HULTP
-def get_hebrew_hext_HULTP(HULTP):
+def get_hebrew_text_HULTP(HULTP):
     # Get all entries
     with open('FileNames.json') as f:
         data = json.load(f)
@@ -96,9 +96,7 @@ def get_hebrew_hext_HULTP(HULTP):
     book = entry["Book"]
     chapter = entry["Chapter"]
     firstvs = entry["Verses"].split('-')[0]
-    print(firstvs)
     lastvs = entry["Verses"].split('-')[1]
-    print(lastvs)
 
     return get_hebrew_hext(book, chapter, int(firstvs), int(lastvs))
 
@@ -111,15 +109,8 @@ def search_entries(term):
     results = []
     # Also, replace spaces with "_" just in case
     term = term.replace(" ", "_")
-    print(term)
     for entry in data:
-        # if term.lower() in ( n.lower() for n in str(entry.values())):
         # hacky way to check for combined name but it works. In the future would reconfigure JSON file
         if term.lower() in str(entry.values()).lower() or term.lower() in (entry["Reader_1st_Name"] + "_" + entry["Reader_2nd_Name"]).lower():
-            print((entry["Reader_1st_Name"] + " " + entry["Reader_2nd_Name"]).lower())
             results.append(entry)
     return results
-
-
-# print(get_hebrew_hext_HULTP(12547))
-get_hebrew_hext("Amos", 1)
