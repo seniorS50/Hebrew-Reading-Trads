@@ -16,6 +16,9 @@ nav .nav-link
 {
     color: #DDD0C8;
 }
+.navbar{
+  position: sticky;
+}
 
 .custom_table {
   float: left;
