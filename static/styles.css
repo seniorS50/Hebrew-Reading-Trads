@@ -23,7 +23,8 @@ table {
     width: 100%;
     margin: auto;
     float: left;
-    max-height: 500px;
+    max-height: auto;
+    max-height: auto;
     overflow: scroll;
 }
 
@@ -58,7 +59,6 @@ tr:nth-child(even) {
   }
 
 .container {
-  margin: auto;
   float: left;
   overflow-x: auto;
   max-height: 500px;
