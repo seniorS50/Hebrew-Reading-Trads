@@ -20,11 +20,9 @@ nav .nav-link
 table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
-    width: 100%;
-    margin: auto;
     float: left;
-    max-height: auto;
-    max-height: auto;
+    max-height: 500px;
+    max-height: 500px;
     overflow: scroll;
 }
 
