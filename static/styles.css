@@ -91,3 +91,10 @@ body {
   h2{
     font-family: "Times New Roman", Times, serif;
   }
+
+  .mb-3{
+    position:absolute;
+    margin: left;
+    top:25%;
+    left: 80%;
+  }
