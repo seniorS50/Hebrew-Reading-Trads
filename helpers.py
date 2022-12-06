@@ -76,7 +76,7 @@ def get_hebrew_hext(book, chapter, firstvs = 1, lastvs = -1):
             # f = open('output.txt', 'a', encoding="utf-8")
             # f.write(word.firstChild.data + " ")
         # f.write(f"\n")
-        hebrew_text.append(verse)
+        hebrew_text.append({"vs": i + 1, "text":verse})
         # f.close()
     return hebrew_text
 
@@ -114,6 +114,3 @@ def search_entries(term):
         if term.lower() in str(entry.values()).lower() or term.lower() in (entry["Reader_1st_Name"] + "_" + entry["Reader_2nd_Name"]).lower():
             results.append(entry)
     return results
-
-
-# print(get_hebrew_text_HULTP(12547))

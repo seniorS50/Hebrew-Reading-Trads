@@ -42,7 +42,7 @@
                     </thead>
                     <tbody >
                         {% for file in entry %}
-                            <tr>
+                            <tr href="/not_israel">
                                 <!-- use a jinja filter to replace all "_" with a space -->
                                 <th>{{ file.Country | replace("_", " ") }}</th>
                                 <td>{{ file.City | replace("_", " ") }}</td>
