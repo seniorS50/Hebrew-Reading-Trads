@@ -4,7 +4,7 @@ nav .navbar-brand
     font-size: xx-large;
 }
 
-#map { height: 180px; }
+/* #map { height: 180px; } */
 
 /* Colors for brand */
 nav .navbar-brand .title
@@ -23,6 +23,7 @@ table {
     width: 100%;
     height: 100%;
     margin-top: -7px;
+
 }
 
 td, th {

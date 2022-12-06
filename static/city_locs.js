@@ -318,6 +318,8 @@ const city = {"items": [
         "Longitude":43.5570871
     }
     ]};
+
+    // Load map
     var map = L.map('map').setView([35, 34], 4);
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
@@ -355,5 +357,21 @@ const city = {"items": [
             // })
         });
     }
+
+    // function addRowHandlers() {
+    //     var table = document.getElementById("tableId");
+    //     var rows = table.getElementsByTagName("tr");
+    //     for (i = 0; i < rows.length; i++) {
+    //       var currentRow = table.rows[i];
+    //       var createClickHandler = function(row) {
+    //         return function() {
+    //           var cell = row.getElementsByTagName("td")[0];
+    //           var id = cell.innerHTML;
+    //           alert("id:" + id);
+    //         };
+    //       };
+    //       currentRow.onclick = createClickHandler(currentRow);
+    //     }
+    //   }
 
     
