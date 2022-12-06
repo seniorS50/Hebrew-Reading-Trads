@@ -18,13 +18,11 @@ nav .nav-link
 }
 
 .custom_table {
-    font-family: arial, sans-serif;
-    border-collapse: collapse;
-    float: left;
-    max-height: 500px;
-    max width: auto;
-    overflow: scroll;
-    overflow-x: auto;
+  margin: auto;
+  float: left;
+  overflow-x: auto;
+  height: 500px;
+  overflow: scroll;
 }
 
 td, th {
@@ -57,12 +55,13 @@ tr:nth-child(even) {
     overflow-x: hidden;
   }
 
-.container {
-  float: left;
-  overflow-x: auto;
-  max-height: 500px;
-  overflow: scroll;
-}
+  .container {
+    margin: auto;
+    float: left;
+    overflow-x: auto;
+    height: 500px;
+    overflow: scroll;
+  }
 
 body {
     background-color: #DDD0C8
