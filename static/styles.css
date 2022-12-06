@@ -1,0 +1,126 @@
+/* set default height for everything to 100% */
+html, body {
+  height: 100%;
+}
+
+
+.map {
+  height: 100%
+  width: 100%
+}
+
+/* Size for brand */
+nav .navbar-brand
+{
+    font-size: xx-large;
+}
+
+/* #map { height: 180px; } */
+
+/* Colors for brand */
+nav .navbar-brand .title
+{
+    color: #DDD0C8;
+}
+
+nav .nav-link
+{
+    color: #DDD0C8;
+}
+
+.custom_table {
+  float: left;
+  max-height: 500px;
+  max-width: 600px;
+  overflow-y: scroll;
+  overflow-x: scroll;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+thead {
+  position: sticky;
+
+}
+
+.sticky-top {
+  background-color: #dddddd;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+
+
+/* Split the screen in half */
+.split {
+    height: 100%;
+    width: 50%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    overflow-x: hidden;
+  }
+
+  .container {
+    margin: auto;
+    float: left;
+    overflow-x: auto;
+    /* height: 500px; */
+    overflow: scroll;
+  }
+
+body {
+    background-color: #DDD0C8
+}
+
+  /* Control the left side */
+.left {
+    left: 0;
+  }
+
+  /* Control the right side */
+  .right {
+    right: 0;
+  }
+
+  /* If you want the content centered horizontally and vertically */
+  .centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+
+
+
+  h2{
+    font-family: "Times New Roman", Times, serif;
+  }
+
+  .mb-3{
+    position:absolute;
+    margin: left;
+    top:25%;
+    left: 80%;
+  }
+
+  .nav-item{
+    float: left;
+    color: #DDD0C8;
+    text-align: center;
+    padding-left: 40px;
+    text-decoration: none;
+    font-size: 22px;
+    vertical-align: center;
+  }
+
+  .table-fixed{
+    heigt: 400px
+    width: 100%;
+  }
