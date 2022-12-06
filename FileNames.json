@@ -138,7 +138,7 @@
     "HULTP": 12547,
     "Book": "Deuteronomy",
     "Chapter": 33,
-    "Verses": 1029,
+    "Verses": "1-29",
     "Reader_1st_Name": "Aba",
     "Reader_2nd_Name": "Gol",
     "Year": 1981
@@ -4185,18 +4185,6 @@
     "Verses": "1-26",
     "Reader_1st_Name": "Yitshaq",
     "Reader_2nd_Name": "Bibi",
-    "Year": 1968
-  },
-  {
-    "File": "Turkey Urfa 12535 Genesis 47 28-31 Yosef Basher 1968",
-    "Country": "Turkey",
-    "City": "Urfa",
-    "HULTP": 12535,
-    "Book": "Genesis",
-    "Chapter": 47,
-    "Verses": "28-31",
-    "Reader_1st_Name": "Yosef",
-    "Reader_2nd_Name": "Basher",
     "Year": 1968
   },
   {

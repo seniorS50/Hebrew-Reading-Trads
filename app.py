@@ -1,32 +1,32 @@
-import os
-
-from cs50 import SQL
-from flask import Flask, flash, redirect, render_template, request, session
-from flask_session import Session
-from tempfile import mkdtemp
-from werkzeug.security import check_password_hash, generate_password_hash
-import time
+from flask import Flask, render_template, request
+from helpers import search_entries, get_hebrew_text_HULTP
 import json
 
 app = Flask(__name__)
 
+# Pre-load dictionary of files from JSON
+with open('FileNames.json') as f:
+    data = json.load(f)
+
 @app.route("/")
 def index():
-    with open('FileNames.json') as f:
-        data = json.load(f)
-
-    ##city = input("Which city?")
-
     return render_template("index.html", entry=data)
 
+@app.route("/listen", methods = ['GET'])
+def listen():
+    # Read in the get request which has an HULTP number
+    HULTP = int(request.args["HULTP"])
+    text = get_hebrew_text_HULTP(HULTP)
+    # Get the recording that matches 
+    for datum in data:
+        if datum["HULTP"] == HULTP:
+            entry = datum
+            break
+    return render_template("listen.html", entry=entry, text=text)
 
 @app.route("/search", methods = ['GET'])
 def search():
-    with open('FileNames.json') as f:
-        data = json.load(f)
-
-    ##city = input("Which city?")
     if request.args:
-        data = request.args["arg1"]
-
-    return render_template("index.html", entry="")
+        return render_template("index.html",entry=search_entries(request.args["q"]))
+    else:
+        return render_template("index.html",entry=[])
