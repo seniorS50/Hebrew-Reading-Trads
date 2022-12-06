@@ -31,7 +31,7 @@
         <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
         integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
         crossorigin=""></script>
-        
+
 
         <title>L'chaim: {% block title %}{% endblock %}</title>
     </head>
@@ -47,6 +47,11 @@
                     <ul class="navbar-nav me-auto mt-2">
                         <li class="nav-item"><a class="nav-link" href="/not_israel">Not Israel</a></li>
                     </ul>
+                    <form action="/search" method="get">
+                        <div class="mb-3">
+                            <input autocomplete="on" autofocus class="form-control mx-auto w-auto" id="q" name="q" placeholder="filter" type="text" >
+                        </div>
+                    </form>
 
                 </div>
             </div>
