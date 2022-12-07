@@ -1,4 +1,3 @@
-A “design document” for your project in the form of a Markdown file called DESIGN.md that discusses, technically, how you implemented your project and why you made the design decisions you did. Your design document should be at least several paragraphs in length. Whereas your documentation is meant to be a user’s manual, consider your design document your opportunity to give the staff a technical tour of your project underneath its hood.
 Explain the below:
 Javascript
 city_locs.js. This is explained in the index section.
@@ -19,3 +18,4 @@ Books and Helpers.py
 Books is a folder that stores each book of the Hebrew bible on different xml files with each word comprising of a single line and detailed where verses and chapters end. These files are freely available from tanach.us. Used by helpers.py to get the text from specific sections being read to appear next to the recordings. This was achieved by reading the book and the chapters from the relevant JSON file and indexing into the xml until the matching portion of the biblical text was found. There are several ways to read xml files with python, and we chose to use minidom, which we imported into the python file. We used minidom because it was the most compatible in terms of indexing into the xml file and extracting very specific sets of data. Furthermore, we imported bidi.algorithm, which helps to read Hebrew text in the correct letter (it’s meant to be read right to left, but python naturally reads it from left to right). The individual steps of this process are explained in the file Helpers.py and itself would take several paragraphs to explain.
 Static
 mp3 contains the meat of the project: nearly the entire archive from the Hebrew University Language Traditions Project which Caleb had access to through his work with Prof. Geoffry Khan of Cambridge University.
+
