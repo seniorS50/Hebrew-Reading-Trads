@@ -17,7 +17,6 @@ def listen():
     # Read in the get request which has an HULTP number
     HULTP = int(request.args["HULTP"])
     text = get_text_HULTP(HULTP)
-    print(text)
     # Get the recording that matches 
     for datum in data:
         if datum["HULTP"] == HULTP:
