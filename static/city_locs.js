@@ -296,8 +296,8 @@ const city = {"items": [
     {
         "Country":"Yemen",
         "City":"Radaa",
-        "Latitude":36.2607061,
-        "Longitude":59.6228515
+        "Latitude":14.408206604363707, 
+        "Longitude":44.83636818170346
     },
     {
         "Country":"Yemen",
@@ -345,33 +345,7 @@ const city = {"items": [
         // with the current city as the argument
         .on("click", function(){
             window.location = "search?q=" + city_name
-            // console.log('hello');
-            // e.preventDefault();
-            // $.ajax({
-            //   type:'GET',
-            //   url:"/search?q=" + city_name,
-            //   success:function()
-            //   {
-            //     alert('saved');
-            //   }
-            // })
         });
     }
-
-    // function addRowHandlers() {
-    //     var table = document.getElementById("tableId");
-    //     var rows = table.getElementsByTagName("tr");
-    //     for (i = 0; i < rows.length; i++) {
-    //       var currentRow = table.rows[i];
-    //       var createClickHandler = function(row) {
-    //         return function() {
-    //           var cell = row.getElementsByTagName("td")[0];
-    //           var id = cell.innerHTML;
-    //           alert("id:" + id);
-    //         };
-    //       };
-    //       currentRow.onclick = createClickHandler(currentRow);
-    //     }
-    //   }
 
     
