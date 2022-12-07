@@ -36,7 +36,7 @@ def get_book_index():
     #     vss (which vss)
     return book_info
 
-def get_hebrew_hext(book, chapter, firstvs = 1, lastvs = -1):
+def get_hebrew_text(book, chapter, firstvs = 1, lastvs = -1):
     # load the index
     index = get_book_index()
     # Get the filename and chapters dict
@@ -73,15 +73,11 @@ def get_hebrew_hext(book, chapter, firstvs = 1, lastvs = -1):
         words = vss[i].getElementsByTagName("w")
         for word in words:
             verse += word.firstChild.data + " "
-            # f = open('output.txt', 'a', encoding="utf-8")
-            # f.write(word.firstChild.data + " ")
-        # f.write(f"\n")
         hebrew_text.append({"vs": i + 1, "text":verse})
-        # f.close()
     return hebrew_text
 
 # Get book, chapter, vs based on HULTP
-def get_hebrew_text_HULTP(HULTP):
+def get_text_HULTP(HULTP):
     # Get all entries
     with open('FileNames.json') as f:
         data = json.load(f)
@@ -97,9 +93,8 @@ def get_hebrew_text_HULTP(HULTP):
     chapter = entry["Chapter"]
     firstvs = entry["Verses"].split('-')[0]
     lastvs = entry["Verses"].split('-')[1]
-
-    return get_hebrew_hext(book, chapter, int(firstvs), int(lastvs))
-
+    # Now, return hebrew text and english text as parts of a single dict
+    return {"hebrew": get_hebrew_text(book, chapter, int(firstvs), int(lastvs)), "english": get_jps(book, chapter, int(firstvs), int(lastvs))}
 
 
 def search_entries(term):
@@ -114,3 +109,63 @@ def search_entries(term):
         if term.lower() in str(entry.values()).lower() or term.lower() in (entry["Reader_1st_Name"] + "_" + entry["Reader_2nd_Name"]).lower():
             results.append(entry)
     return results
+
+
+def get_jps(book, chapter, firstvs = 0, lastvs = 0):
+    # Get info from the index
+    doc = minidom.parse("Books\engjps_vpl.xml")
+    index = doc.getElementsByTagName("v")
+    text = []
+    for verse in index:
+        if verse.hasAttribute("b") and verse.getAttribute("b") == book_to_abbr(book) \
+                and int(verse.getAttribute("c")) == chapter \
+                and int(verse.getAttribute("v")) >= firstvs \
+                and int(verse.getAttribute("v")) <= lastvs:
+            text.append({ "vs": int(verse.getAttribute("v")), "text": verse.firstChild.data})
+    return text
+
+
+# Switch from full string (which the filenames pass in from the JSON) to the abbreviations present in the English JPS 1917 edition
+# JPS used because it is open source and so that chapters and verses match
+def book_to_abbr(book_name):
+    match book_name:
+        case 'Genesis': return ( 'GEN')
+        case 'Exodus': return ( 'EXO')
+        case 'Leviticus': return ( 'LEV')
+        case 'Numbers': return ( 'NUM')
+        case 'Deuteronomy': return ( 'DEU')
+        case 'Joshua': return ( 'JOS')
+        case 'Judges': return ( 'JDG')
+        case 'Ruth': return ( 'RUT')
+        case '1 Samuel': return ( '1SA')
+        case '2 Samuel': return ( '2SA')
+        case '1 Kings': return ( '1KI')
+        case '2 Kings': return ( '2KI')
+        case '1 Chronicles': return ( '1CH')
+        case '2 Chronicles': return ( '2CH')
+        case 'Ezra': return ( 'EZR')
+        case 'Nehemiah': return ( 'NEH')
+        case 'Esther': return ( 'EST')
+        case 'Job': return ( 'JOB')
+        case 'Psalms': return ( 'PSA')
+        case 'Proverbs': return ( 'PRO')
+        case 'Ecclesiastes': return ( 'ECC')
+        case 'Song of Songs': return ( 'SNG')
+        case 'Isaiah': return ( 'ISA')
+        case 'Jeremiah': return ( 'JER')
+        case 'Lamentations': return ( 'LAM')
+        case 'Ezekiel': return ( 'EZK')
+        case 'Daniel': return ( 'DAN')
+        case 'Hosea': return ( 'HOS')
+        case 'Joel': return ( 'JOL')
+        case 'Amos': return ( 'AMO')
+        case 'Obadiah': return ( 'OBA')
+        case 'Jonah': return ( 'JON')
+        case 'Micah': return ( 'MIC')
+        case 'Nahum': return ( 'NAM')
+        case 'Habakkuk': return ( 'HAB')
+        case 'Zepheniah': return ( 'ZEP')
+        case 'Haggai': return ( 'HAG')
+        case 'Zecheriah': return ( 'ZEC')
+        case 'Malachi': return ( 'MAL')
+    return("Error")
