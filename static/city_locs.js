@@ -151,9 +151,9 @@ const city = {"items": [
     },
     {
         "Country":"Morocco",
-        "City":"Dobdou",
-        "Latitude":33.9850,
-        "Longitude":3.0401
+        "City":"Debdou",
+        "Latitude":33.98446971323408,
+        "Longitude":-3.0401
     },
     {
         "Country":"Morocco",
