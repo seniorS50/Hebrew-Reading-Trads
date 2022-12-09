@@ -1,5 +1,12 @@
+<<<<<<<< HEAD:app.py
 from flask import Flask, render_template, request
+from helpers import search_entries, get_text_HULTP
+========
+import os
+from flask import Flask, flash, redirect, render_template, request, session, send_from_directory
 from helpers import search_entries, get_hebrew_text_HULTP
+import time
+>>>>>>>> 5a4855c0034a70ad3c47f80978444d4c8f150995:project/app.py
 import json
 
 app = Flask(__name__)
@@ -16,7 +23,7 @@ def index():
 def listen():
     # Read in the get request which has an HULTP number
     HULTP = int(request.args["HULTP"])
-    text = get_hebrew_text_HULTP(HULTP)
+    text = get_text_HULTP(HULTP)
     # Get the recording that matches 
     for datum in data:
         if datum["HULTP"] == HULTP:

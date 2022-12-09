@@ -16,3 +16,7 @@ Background reading:
 Khan, Geoffrey, “Biblical Hebrew: Pronunciation Traditions”, in: Encyclopedia of Hebrew Language and Linguistics, Edited by: Geoffrey Khan. Consulted online on 06 December 2022 <http://dx.doi.org.ezp-prod1.hul.harvard.edu/10.1163/2212-4241_ehll_EHLL_SIM_000576>
 First published online: 2013
 First print edition: 9789004176423
+
+Video: https://www.youtube.com/watch?v=rHBtX-5ukxQ&feature=youtu.be
+
+MP3s: https://drive.google.com/file/d/1FSH5IVxVwEc52dvObrxf7gTWQEz--MXv/view?usp=share_link

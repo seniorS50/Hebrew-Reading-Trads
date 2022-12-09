@@ -42,12 +42,12 @@ def get_hebrew_text(book, chapter, firstvs = 1, lastvs = -1):
     # Get the filename and chapters dict
     filename = None
     for entry in index:
-        if entry["name"].lower() == book.lower() or entry["abbrev"].lower() == book.lower():
+        if entry["name"].lower() == book.lower() or entry["abbrev"].lower() == book.lower() or entry["filename"] == book.replace(" ", "_"):
             filename = entry["filename"]
             chapters = entry["chapters"]
             break
     if not filename:
-        print("error: book not found. Searching by abbreviation not supported yet")
+        print("error: book not found.")
         return(1)
     # Check that the book and chapter numbers make sense
     if chapter < 1 or chapter > len(chapters) + 1:
@@ -128,7 +128,7 @@ def get_jps(book, chapter, firstvs = 0, lastvs = 0):
 # Switch from full string (which the filenames pass in from the JSON) to the abbreviations present in the English JPS 1917 edition
 # JPS used because it is open source and so that chapters and verses match
 def book_to_abbr(book_name):
-    match book_name:
+    match book_name.replace("_", " "):
         case 'Genesis': return ( 'GEN')
         case 'Exodus': return ( 'EXO')
         case 'Leviticus': return ( 'LEV')
@@ -137,12 +137,14 @@ def book_to_abbr(book_name):
         case 'Joshua': return ( 'JOS')
         case 'Judges': return ( 'JDG')
         case 'Ruth': return ( 'RUT')
+        case 'Samuel 1': return ( '1SA')
         case '1 Samuel': return ( '1SA')
         case '2 Samuel': return ( '2SA')
-        case '1 Kings': return ( '1KI')
-        case '2 Kings': return ( '2KI')
-        case '1 Chronicles': return ( '1CH')
-        case '2 Chronicles': return ( '2CH')
+        case 'Samuel 2': return ( '1SA')
+        case '1 Kings', 'Kings 1': return ( '1KI')
+        case '2 Kings', 'Kings 2': return ( '2KI')
+        case '1 Chronicles', 'Chronicles 1': return ( '1CH')
+        case '2 Chronicles', 'Chronicales 2': return ( '2CH')
         case 'Ezra': return ( 'EZR')
         case 'Nehemiah': return ( 'NEH')
         case 'Esther': return ( 'EST')
@@ -169,3 +171,6 @@ def book_to_abbr(book_name):
         case 'Zecheriah': return ( 'ZEC')
         case 'Malachi': return ( 'MAL')
     return("Error")
+
+
+print(get_text_HULTP(13472))
