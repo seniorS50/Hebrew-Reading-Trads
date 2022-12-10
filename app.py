@@ -5,7 +5,7 @@ import json
 app = Flask(__name__)
 
 # Pre-load dictionary of files from JSON
-with open('FileNames.json') as f:
+with open('filenames3.json') as f:
     data = json.load(f)
 
 @app.route("/")
@@ -18,8 +18,9 @@ def listen():
     HULTP = int(request.args["HULTP"])
     text = get_text_HULTP(HULTP)
     # Get the recording that matches 
+    entry = {}
     for datum in data:
-        if datum["HULTP"] == HULTP:
+        if str(datum["HULTP"]) == str(HULTP):
             entry = datum
             break
     return render_template("listen.html", entry=entry, text=text)

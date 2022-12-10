@@ -29,7 +29,7 @@
                             <th scope="col">Country</th>
                             <th scope="col">City</th>
                             <th scope="col">Book</th>
-                            <th scope="col">Reference</th>
+                            <th scope="col">Ref</th>
                             <th scope="col">Reader </th>
                             <th scope="col">Year</th>
                             <th scope="col">HULTP</th>
@@ -40,13 +40,13 @@
                         {% for file in entry %}
                             <tr href="/not_israel">
                                 <!-- use a jinja filter to replace all "_" with a space -->
-                                <th>{{ file.Country | replace("_", " ") }}</th>
-                                <td>{{ file.City | replace("_", " ") }}</td>
-                                <td>{{ file.Book | replace("_", " ") }}</td>
+                                <th>{{ file.country }}</th>
+                                <td>{{ file.city }}</td>
+                                <td>{{ file.book }}</td>
                                 <!-- combine chapter and verse into reference -->
-                                <td>{{ file.Chapter | replace("_", " ") }}:{{ file.Verses | replace("_", " ") }}</td>
-                                <td>{{ file.Reader_1st_Name | replace("_", " ") }} {{ file.Reader_2nd_Name | replace("_", " ") }}</td>
-                                <td>{{ file.Year }}</td>
+                                <td>{{ file.ref }}</td>
+                                <td>{{ file.reader }}</td>
+                                <td>{{ file.year }}</td>
                                 <td>{{ file.HULTP }}</td>
                                 <td>
                                     <input type=button onClick="location.href='../listen?HULTP={{ file.HULTP }}'"

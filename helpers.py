@@ -3,6 +3,9 @@ from bidi.algorithm import get_display
 import json
 from xml.dom import minidom
 
+with open('filenames3.json') as f:
+    data = json.load(f)
+
 def get_book_index():
     # Get info from the index
     doc = minidom.parse("Books/TanachIndex.xml")
@@ -50,11 +53,11 @@ def get_hebrew_text(book, chapter, firstvs = 1, lastvs = -1):
         print("error: book not found.")
         return(1)
     # Check that the book and chapter numbers make sense
-    if chapter < 1 or chapter > len(chapters) + 1:
+    if int(chapter) < 1 or int(chapter) > len(chapters) + 1:
         print("invalid chapter")
         return(2)
     # If there is an invalid or default verse ranger, just go ahead and give the whole chapter back
-    if int(firstvs) > int(lastvs) or int(lastvs) > int(chapters[chapter - 1]["vss"]):
+    if (firstvs) > (lastvs) or (lastvs) > int(chapters[chapter - 1]["vss"]):
         firstvs = 1
         lastvs = int(chapters[chapter-1]["vss"])
     
@@ -78,35 +81,29 @@ def get_hebrew_text(book, chapter, firstvs = 1, lastvs = -1):
 
 # Get book, chapter, vs based on HULTP
 def get_text_HULTP(HULTP):
-    # Get all entries
-    with open('FileNames.json') as f:
-        data = json.load(f)
-    
     # Get entry with correct HULTP (these are unqiue)
+    entry = {}
     for datum in data:
-        if HULTP == datum["HULTP"]:
+        if str(HULTP) == datum["HULTP"]:
             entry = datum
             break
-    
+    if not entry:
+        return 2
     # Get the info from our entry
-    book = entry["Book"]
-    chapter = entry["Chapter"]
-    firstvs = entry["Verses"].split('-')[0]
-    lastvs = entry["Verses"].split('-')[1]
+    book = entry["book"]
+    chapter = entry["ref"].split(':')[0]
+    firstvs = entry["ref"].split(':')[1].split('-')[0]
+    lastvs = entry["ref"].split(':')[1].split('-')[1]
     # Now, return hebrew text and english text as parts of a single dict
-    return {"hebrew": get_hebrew_text(book, chapter, int(firstvs), int(lastvs)), "english": get_jps(book, chapter, int(firstvs), int(lastvs))}
+    return {"hebrew": get_hebrew_text(book, int(chapter), int(firstvs), int(lastvs)), "english": get_jps(book, int(chapter), int(firstvs), int(lastvs))}
 
 
 def search_entries(term):
-    # load all entries
-    with open('FileNames.json') as f:
-        data = json.load(f)
-    results = []
     # Also, replace spaces with "_" just in case
-    term = term.replace(" ", "_")
+    results = []
     for entry in data:
         # hacky way to check for combined name but it works. In the future would reconfigure JSON file
-        if term.lower() in str(entry.values()).lower() or term.lower() in (entry["Reader_1st_Name"] + "_" + entry["Reader_2nd_Name"]).lower():
+        if term.lower() in str(entry.values()).lower():
             results.append(entry)
     return results
 
@@ -121,7 +118,7 @@ def get_jps(book, chapter, firstvs = 0, lastvs = 0):
                 and int(verse.getAttribute("c")) == chapter \
                 and int(verse.getAttribute("v")) >= firstvs \
                 and int(verse.getAttribute("v")) <= lastvs:
-            text.append({ "vs": int(verse.getAttribute("v")), "text": verse.firstChild.data})
+            text.append({ "vs": verse.getAttribute("v"), "text": verse.firstChild.data})
     return text
 
 
@@ -171,6 +168,4 @@ def book_to_abbr(book_name):
         case 'Zecheriah': return ( 'ZEC')
         case 'Malachi': return ( 'MAL')
     return("Error")
-
-
-print(get_text_HULTP(13472))
+print(search_entries("13956"))

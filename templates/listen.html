@@ -24,13 +24,13 @@
                     </thead>
                     <tbody >
                         <tr>
-                            <td>{{ entry.Country | replace("_", " ") }}</th>
-                            <td>{{ entry.City | replace("_", " ") }}</td>
-                            <td>{{ entry.Book | replace("_", " ") }}</td>
+                            <td>{{ entry.country }}</th>
+                            <td>{{ entry.city }}</td>
+                            <td>{{ entry.book }}</td>
                             <!-- combine chapter and verse into reference -->
-                            <td>{{ entry.Chapter | replace("_", " ") }}:{{ entry.Verses | replace("_", " ") }}</td>
-                            <td>{{ entry.Reader_1st_Name | replace("_", " ") }} {{ entry.Reader_2nd_Name | replace("_", " ") }}</td>
-                            <td>{{ entry.Year }}</td>
+                            <td>{{ entry.ref }}</td>
+                            <td>{{ entry.reader }}</td>
+                            <td>{{ entry.year }}</td>
                             <td>{{ entry.HULTP }}</td>
                         </tr>
                     </tbody>
@@ -40,7 +40,7 @@
         <div class="row">
             <audio controls>
                 <!-- <source src="/static/mp3/{{ entry.File }}.mp3" type="audio/mpeg"> -->
-                <source src="/static/mp3/{{ entry.File }}.mp3" type="audio/mpeg">
+                <source src="/static/mp3/{{ entry.file }}.mp3" type="audio/mpeg">
 
               Your browser does not support the audio element.
             </audio>
@@ -49,7 +49,7 @@
             <div class="row">
    
                 <h2>Passage</h2>
-                <h4>{{ entry.Book | replace("_", " ") }} {{ entry.Chapter | replace("_", " ") }}:{{ entry.Verses | replace("_", " ") }}</h4>
+                <h4>{{ entry.book | replace("_", " ") }} {{ entry.ref | replace("_", " ") }}</h4>
                 <div lang="en" style="text-align: left; width:85%">
                     {% for vs in text.english %}
                         <p>{{ vs.vs }} {{ vs.text }}</p>
@@ -61,7 +61,7 @@
             
         <div class="col-md-6">
             <h2>פסוק</h2>
-            <h4>{{ entry.Book | replace("_", " ") }} {{ entry.Chapter | replace("_", " ") }}:{{ entry.Verses | replace("_", " ") }}</h4>
+            <h4>{{ entry.book | replace("_", " ") }} {{ entry.ref | replace("_", " ") }}</h4>
             <div dir="rtl" lang="hb" style="text-align: right; width:85%">
                 {% for vs in text.hebrew %}
                     <p>{{ vs.vs }} {{ vs.text }}</p>
