@@ -8,6 +8,10 @@ app = Flask(__name__)
 with open('filenames3.json') as f:
     data = json.load(f)
 
+# Pre-load dictionary of city locations from JSON
+with open('static/city_locs.json') as f:
+    cities = json.load(f)
+
 @app.after_request
 def after_request(response):
     """Ensure responses aren't cached"""
@@ -19,7 +23,7 @@ def after_request(response):
 
 @app.route("/")
 def index():
-    return render_template("index.html", entry=data)
+    return render_template("index.html", entry=data, cities = json.dumps(cities))
 
 @app.route("/listen", methods = ['GET'])
 def listen():
@@ -36,7 +40,9 @@ def listen():
 
 @app.route("/search", methods = ['GET'])
 def search():
+    results = search_entries(request.args["q"])
+    print(results['cities'])
     if request.args:
-        return render_template("index.html",entry=search_entries(request.args["q"]))
+        return render_template("index.html", entry = results['entries'], cities = json.dumps(results['cities']))
     else:
-        return render_template("index.html",entry=[])
+        return render_template("index.html", entry=[], cities = json.dumps(cities))

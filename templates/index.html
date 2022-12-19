@@ -18,27 +18,31 @@
                             maxZoom: 19,
                             attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
                             }).addTo(map);
-                            let cityJSON = fetch('./static/city_locs.json')
-                            .then((resp) => resp.json())
-                            .then((data) => {
-                                for (i = 0; i < data.length; i++){
-                                    let city_name = data[i]['city'];
-                                    let country_name = data[i]['country']
-                                    let marker = L.marker([data[i]['lat'], data[i]['long']]).addTo(map)
-                                    .bindPopup(country_name +'<br>' + city_name)
-                                    // Rather than show popup on click, simply show it on mouseover. This way when we click we can search
-                                    .on('mouseover', function (e) {
-                                        this.openPopup();
-                                    });
-                                    // Close popover on mouse out
-                                    marker.on('mouseout', function (e) {
-                                        this.closePopup();
-                                    })
-                                    .on("click", function(){
-                                        window.location = "search?q=" + city_name
-                                    });
+                            cities = JSON.parse({{ cities|tojson|safe }});
+                            console.log(cities);
+                            for(i = 0; i < cities.length; i++){
+                                let city_name = cities[i]['city'];
+                                let country_name = cities[i]['country']
+                                let marker = L.marker([cities[i]['lat'], cities[i]['long']]).addTo(map)
+                                .bindPopup(country_name +'<br>' + city_name)
+                                // Rather than show popup on click, simply show it on mouseover. This way when we click we can search
+                                .on('mouseover', function (e) {
+                                    this.openPopup();
+                                });
+                                // Close popover on mouse out
+                                marker.on('mouseout', function (e) {
+                                    this.closePopup();
+                                })
+                                .on("click", function(){
+                                    window.location = "search?q=" + city_name
+                                });
+                                if(cities.length == 1) {
+                                    marker.openPopup;
                                 }
-                            });
+                            }
+                            if(cities.length == 1) {
+                                    map.setView([cities[0]['lat'], cities[0]['long']],5);
+                                }
                         </script>
                     </div>
                 </div>
