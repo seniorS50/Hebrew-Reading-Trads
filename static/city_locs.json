@@ -1,4 +1,4 @@
-const city = {"items": [
+[
     {
         "Country":"Afghanistan",
         "City":"Herat",
@@ -151,9 +151,9 @@ const city = {"items": [
     },
     {
         "Country":"Morocco",
-        "City":"Dobdou",
-        "Latitude":33.9850,
-        "Longitude":3.0401
+        "City":"Debdou",
+        "Latitude":33.98446971323408,
+        "Longitude":-3.0401
     },
     {
         "Country":"Morocco",
@@ -296,8 +296,8 @@ const city = {"items": [
     {
         "Country":"Yemen",
         "City":"Radaa",
-        "Latitude":36.2607061,
-        "Longitude":59.6228515
+        "Latitude":14.408206604363707, 
+        "Longitude":44.83636818170346
     },
     {
         "Country":"Yemen",
@@ -317,61 +317,4 @@ const city = {"items": [
         "Latitude":13.4115414,
         "Longitude":43.5570871
     }
-    ]};
-
-    // Load map
-    var map = L.map('map').setView([35, 34], 4);
-    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 19,
-    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-    }).addTo(map);
-    var city_name;
-    var country_name;
-    for (i = 0; i < city['items'].length; i++){
-        let city_name = city['items'][i]['City'];
-        let country_name = city['items'][i]['Country']
-        var marker = L.marker([city['items'][i]['Latitude'], city['items'][i]['Longitude']]).addTo(map)
-        .bindPopup(country_name +'<br>' + city_name)
-        // Rather than show popup on click, simply show it on mouseover. This way when we click we can search
-        .on('mouseover', function (e) {
-            this.openPopup();
-        });
-        // Close popover on mouse out
-        marker.on('mouseout', function (e) {
-            this.closePopup();
-        })
-        // Write an anonymous function for when the object is clicked. 
-        // There must be a better way to pass in the information to flask, but for now I have hard coded the search URL
-        // with the current city as the argument
-        .on("click", function(){
-            window.location = "search?q=" + city_name
-            // console.log('hello');
-            // e.preventDefault();
-            // $.ajax({
-            //   type:'GET',
-            //   url:"/search?q=" + city_name,
-            //   success:function()
-            //   {
-            //     alert('saved');
-            //   }
-            // })
-        });
-    }
-
-    // function addRowHandlers() {
-    //     var table = document.getElementById("tableId");
-    //     var rows = table.getElementsByTagName("tr");
-    //     for (i = 0; i < rows.length; i++) {
-    //       var currentRow = table.rows[i];
-    //       var createClickHandler = function(row) {
-    //         return function() {
-    //           var cell = row.getElementsByTagName("td")[0];
-    //           var id = cell.innerHTML;
-    //           alert("id:" + id);
-    //         };
-    //       };
-    //       currentRow.onclick = createClickHandler(currentRow);
-    //     }
-    //   }
-
-    
+    ]
