@@ -18,7 +18,7 @@
                             maxZoom: 19,
                             attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
                             }).addTo(map);
-                            cities = JSON.parse({{ cities|tojson|safe }});
+                            cities = JSON.parse({{ cities | tojson|safe }});
                             console.log(cities);
                             for(i = 0; i < cities.length; i++){
                                 let city_name = cities[i]['city'];
@@ -36,13 +36,13 @@
                                 .on("click", function(){
                                     window.location = "search?q=" + city_name
                                 });
-                                if(cities.length == 1) {
-                                    marker.openPopup;
-                                }
+                                // if(cities.length == 1) {
+                                //     marker.openPopup;
+                                // }
                             }
-                            if(cities.length == 1) {
-                                    map.setView([cities[0]['lat'], cities[0]['long']],5);
-                                }
+                            // if(cities.length == 1) {
+                            //     map.setView([cities[0]['lat'], cities[0]['long']],5);
+                            // }
                         </script>
                     </div>
                 </div>

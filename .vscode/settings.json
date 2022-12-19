@@ -1,3 +1,6 @@
 {
     "gitdoc.enabled": true
+    "files.exclude": {
+        "**/__pycache__": true
+    }
 }
