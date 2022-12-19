@@ -36,13 +36,13 @@
                                 .on("click", function(){
                                     window.location = "search?q=" + city_name
                                 });
-                                // if(cities.length == 1) {
-                                //     marker.openPopup;
-                                // }
+                                if(cities.length == 1) {
+                                    marker.openPopup;
+                                }
                             }
-                            // if(cities.length == 1) {
-                            //     map.setView([cities[0]['lat'], cities[0]['long']],5);
-                            // }
+                            if(cities.length == 1) {
+                                map.setView([cities[0]['lat'], cities[0]['long']],5);
+                            }
                         </script>
                     </div>
                 </div>

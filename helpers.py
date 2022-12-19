@@ -6,6 +6,58 @@ from xml.dom import minidom
 with open('filenames3.json') as f:
     data = json.load(f)
 
+# Pre-load dictionary of city locations from JSON
+with open('static/city_locs.json') as f:
+    cities = json.load(f)
+
+# Switch from full string (which the filenames pass in from the JSON) to the abbreviations present in the English JPS 1917 edition
+# JPS used because it is open source and so that chapters and verses match
+def book_to_abbr(book_name):
+    match book_name.replace("_", " "):
+        case 'Genesis': return ( 'GEN')
+        case 'Exodus': return ( 'EXO')
+        case 'Leviticus': return ( 'LEV')
+        case 'Numbers': return ( 'NUM')
+        case 'Deuteronomy': return ( 'DEU')
+        case 'Joshua': return ( 'JOS')
+        case 'Judges': return ( 'JDG')
+        case 'Ruth': return ( 'RUT')
+        case 'Samuel 1': return ( '1SA')
+        case '1 Samuel': return ( '1SA')
+        case '2 Samuel': return ( '2SA')
+        case 'Samuel 2': return ( '1SA')
+        case '1 Kings', 'Kings 1': return ( '1KI')
+        case '2 Kings', 'Kings 2': return ( '2KI')
+        case '1 Chronicles', 'Chronicles 1': return ( '1CH')
+        case '2 Chronicles', 'Chronicales 2': return ( '2CH')
+        case 'Ezra': return ( 'EZR')
+        case 'Nehemiah': return ( 'NEH')
+        case 'Esther': return ( 'EST')
+        case 'Job': return ( 'JOB')
+        case 'Psalms': return ( 'PSA')
+        case 'Proverbs': return ( 'PRO')
+        case 'Ecclesiastes': return ( 'ECC')
+        case 'Song of Songs': return ( 'SNG')
+        case 'Isaiah': return ( 'ISA')
+        case 'Jeremiah': return ( 'JER')
+        case 'Lamentations': return ( 'LAM')
+        case 'Ezekiel': return ( 'EZK')
+        case 'Daniel': return ( 'DAN')
+        case 'Hosea': return ( 'HOS')
+        case 'Joel': return ( 'JOL')
+        case 'Amos': return ( 'AMO')
+        case 'Obadiah': return ( 'OBA')
+        case 'Jonah': return ( 'JON')
+        case 'Micah': return ( 'MIC')
+        case 'Nahum': return ( 'NAM')
+        case 'Habakkuk': return ( 'HAB')
+        case 'Zepheniah': return ( 'ZEP')
+        case 'Haggai': return ( 'HAG')
+        case 'Zecheriah': return ( 'ZEC')
+        case 'Malachi': return ( 'MAL')
+    return("Error")
+
+
 def get_book_index():
     # Get info from the index
     doc = minidom.parse("Books/TanachIndex.xml")
@@ -100,14 +152,25 @@ def get_text_HULTP(HULTP):
 
 def search_entries(term):
     # Also, replace spaces with "_" just in case
-    results = []
+    results = {
+        'entries' : [],
+        'cities' : []
+    }
+    curr_cities = []
     for entry in data:
         # hacky way to check for combined name but it works. In the future would reconfigure JSON file
         if term.lower() in str(entry.values()).lower():
-            results.append(entry)
+            results["entries"].append(entry)
+    # Now, get the relevant cities
+    for entry in results["entries"]:
+        if entry['city'] not in curr_cities:
+            curr_cities.append(entry['city'])
+    for city in cities:
+        if city['city'] in curr_cities:
+            results['cities'].append(city)
     return results
 
-
+    
 def get_jps(book, chapter, firstvs = 0, lastvs = 0):
     # Get info from the index
     doc = minidom.parse("Books\engjps_vpl.xml")
@@ -120,52 +183,3 @@ def get_jps(book, chapter, firstvs = 0, lastvs = 0):
                 and int(verse.getAttribute("v")) <= lastvs:
             text.append({ "vs": verse.getAttribute("v"), "text": verse.firstChild.data})
     return text
-
-
-# Switch from full string (which the filenames pass in from the JSON) to the abbreviations present in the English JPS 1917 edition
-# JPS used because it is open source and so that chapters and verses match
-def book_to_abbr(book_name):
-    match book_name.replace("_", " "):
-        case 'Genesis': return ( 'GEN')
-        case 'Exodus': return ( 'EXO')
-        case 'Leviticus': return ( 'LEV')
-        case 'Numbers': return ( 'NUM')
-        case 'Deuteronomy': return ( 'DEU')
-        case 'Joshua': return ( 'JOS')
-        case 'Judges': return ( 'JDG')
-        case 'Ruth': return ( 'RUT')
-        case 'Samuel 1': return ( '1SA')
-        case '1 Samuel': return ( '1SA')
-        case '2 Samuel': return ( '2SA')
-        case 'Samuel 2': return ( '1SA')
-        case '1 Kings', 'Kings 1': return ( '1KI')
-        case '2 Kings', 'Kings 2': return ( '2KI')
-        case '1 Chronicles', 'Chronicles 1': return ( '1CH')
-        case '2 Chronicles', 'Chronicales 2': return ( '2CH')
-        case 'Ezra': return ( 'EZR')
-        case 'Nehemiah': return ( 'NEH')
-        case 'Esther': return ( 'EST')
-        case 'Job': return ( 'JOB')
-        case 'Psalms': return ( 'PSA')
-        case 'Proverbs': return ( 'PRO')
-        case 'Ecclesiastes': return ( 'ECC')
-        case 'Song of Songs': return ( 'SNG')
-        case 'Isaiah': return ( 'ISA')
-        case 'Jeremiah': return ( 'JER')
-        case 'Lamentations': return ( 'LAM')
-        case 'Ezekiel': return ( 'EZK')
-        case 'Daniel': return ( 'DAN')
-        case 'Hosea': return ( 'HOS')
-        case 'Joel': return ( 'JOL')
-        case 'Amos': return ( 'AMO')
-        case 'Obadiah': return ( 'OBA')
-        case 'Jonah': return ( 'JON')
-        case 'Micah': return ( 'MIC')
-        case 'Nahum': return ( 'NAM')
-        case 'Habakkuk': return ( 'HAB')
-        case 'Zepheniah': return ( 'ZEP')
-        case 'Haggai': return ( 'HAG')
-        case 'Zecheriah': return ( 'ZEC')
-        case 'Malachi': return ( 'MAL')
-    return("Error")
-print(search_entries("13956"))

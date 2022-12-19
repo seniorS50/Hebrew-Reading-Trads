@@ -23,7 +23,9 @@ def after_request(response):
 
 @app.route("/")
 def index():
-    return render_template("index.html", entry=data, cities = json.dumps(cities))
+    print("Here is the dump")
+    print(json.dumps(cities))
+    return render_template("index.html", entry = data, cities = json.dumps(cities))
 
 @app.route("/listen", methods = ['GET'])
 def listen():
