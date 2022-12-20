@@ -8,9 +8,20 @@
 //         }
 // }).then(console.log(cities));
 
+// // Currently this is in the wrong place. I placed it in the header as that was what worked, but not sure if that was the best option
+
+// $('#search-input').on('keyup', function(){
+//     var value = $(this).val()
+//     console.log('Value: ', value)
+//     })
+
 function buildTable(entries) {
+
     var table = document.getElementById("myTable")
-    for (let i = 0; i < entries.length; i++)    {
+
+    table.innerHTML = ''
+
+    for (let i = 0; i < entries.length && i < 50; i++)    {
         // TODO: add listen functionality
         var row = `<tr>
                 <td>${entries[i].country}</td>
@@ -20,8 +31,8 @@ function buildTable(entries) {
                 <td>${entries[i].reader}</td>
                 <td>${entries[i].year}</td>
                 <td>${entries[i].HULTP}</td>
-            </tr>
-        `
+                <td><input type=button onClick="location.href='../listen?HULTP=${entries[i].HULTP}'" value='Play'></td>
+            </tr>`
         table.innerHTML += row
     }
 
@@ -56,4 +67,18 @@ function render_map(cities)   {
     if(cities.length == 1) {
         map.setView([cities[0]['lat'], cities[0]['long']],5);
     }
+}
+
+function searchTable(query, entries) {
+    var filteredData = []
+
+    for(let i = 0; i < entries.length; i++) {
+        let values = Object.values(entries[i]).join(" ").toLowerCase()
+        if(values.includes(query.toLowerCase())){
+            filteredData.push(entries[i])
+        }
+    }
+
+    return filteredData
+
 }

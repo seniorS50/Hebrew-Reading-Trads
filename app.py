@@ -32,9 +32,9 @@ def listen():
     text = get_text_HULTP(HULTP)
     # Get the recording that matches 
     entry = {}
-    for datum in data:
-        if str(datum["HULTP"]) == str(HULTP):
-            entry = datum
+    for item in entries:
+        if str(item["HULTP"]) == str(HULTP):
+            entry = item
             break
     return render_template("listen.html", entry=entry, text=text)
 
