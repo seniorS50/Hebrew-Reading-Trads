@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 # Pre-load dictionary of files from JSON
 with open('filenames3.json') as f:
-    data = json.load(f)
+    entries = json.load(f)
 
 # Pre-load dictionary of city locations from JSON
 with open('static/city_locs.json') as f:
@@ -23,9 +23,7 @@ def after_request(response):
 
 @app.route("/")
 def index():
-    print("Here is the dump")
-    print(json.dumps(cities))
-    return render_template("index.html", entry = data, cities = json.dumps(cities))
+    return render_template("index.html", entries = json.dumps(entries), cities = json.dumps(cities))
 
 @app.route("/listen", methods = ['GET'])
 def listen():
@@ -43,8 +41,7 @@ def listen():
 @app.route("/search", methods = ['GET'])
 def search():
     results = search_entries(request.args["q"])
-    print(results['cities'])
     if request.args:
-        return render_template("index.html", entry = results['entries'], cities = json.dumps(results['cities']))
+        return render_template("index.html", entries = json.dumps(results['entries']), cities = json.dumps(results['cities']))
     else:
         return render_template("index.html", entry=[], cities = json.dumps(cities))

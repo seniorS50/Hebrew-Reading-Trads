@@ -13,36 +13,8 @@
                 <div class="container-fluid">
                     <div id="map" class="map">
                         <script>
-                            map = L.map('map').setView([35, 34], 4);
-                            L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                            maxZoom: 19,
-                            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-                            }).addTo(map);
                             cities = JSON.parse({{ cities | tojson|safe }});
-                            console.log(cities);
-                            for(i = 0; i < cities.length; i++){
-                                let city_name = cities[i]['city'];
-                                let country_name = cities[i]['country']
-                                let marker = L.marker([cities[i]['lat'], cities[i]['long']]).addTo(map)
-                                .bindPopup(country_name +'<br>' + city_name)
-                                // Rather than show popup on click, simply show it on mouseover. This way when we click we can search
-                                .on('mouseover', function (e) {
-                                    this.openPopup();
-                                });
-                                // Close popover on mouse out
-                                marker.on('mouseout', function (e) {
-                                    this.closePopup();
-                                })
-                                .on("click", function(){
-                                    window.location = "search?q=" + city_name
-                                });
-                                if(cities.length == 1) {
-                                    marker.openPopup;
-                                }
-                            }
-                            if(cities.length == 1) {
-                                map.setView([cities[0]['lat'], cities[0]['long']],5);
-                            }
+                            render_map(cities);
                         </script>
                     </div>
                 </div>
@@ -65,27 +37,13 @@
                                 <th scope="col">Reader </th>
                                 <th scope="col">Year</th>
                                 <th scope="col">HULTP</th>
-                                <th scope="col">Audio</th>
+                                <!-- <th scope="col">Audio</th> -->
                             </tr>
                         </thead>
-                        <tbody >
-                            {% for file in entry %}
-                                <tr href="/not_israel">
-                                    <!-- use a jinja filter to replace all "_" with a space -->
-                                    <th>{{ file.country }}</th>
-                                    <td>{{ file.city }}</td>
-                                    <td>{{ file.book }}</td>
-                                    <!-- combine chapter and verse into reference -->
-                                    <td>{{ file.ref }}</td>
-                                    <td>{{ file.reader }}</td>
-                                    <td>{{ file.year }}</td>
-                                    <td>{{ file.HULTP }}</td>
-                                    <td>
-                                        <input type=button onClick="location.href='../listen?HULTP={{ file.HULTP }}'"
-                                        value='listen'>
-                                    </td>
-                                </tr>
-                            {% endfor %}
+                        <tbody id = "myTable" >
+                            <script>
+                                buildTable(JSON.parse({{ entries |tojson|safe }}))
+                            </script>
                         </tbody>
                     </table>
                 </div>
