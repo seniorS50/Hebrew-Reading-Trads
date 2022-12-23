@@ -23,8 +23,6 @@ def after_request(response):
 
 @app.route("/")
 def index():
-    print("Here is the dump")
-    print(json.dumps(cities))
     return render_template("index.html", entry = data, cities = json.dumps(cities))
 
 @app.route("/listen", methods = ['GET'])
@@ -43,7 +41,6 @@ def listen():
 @app.route("/search", methods = ['GET'])
 def search():
     results = search_entries(request.args["q"])
-    print(results['cities'])
     if request.args:
         return render_template("index.html", entry = results['entries'], cities = json.dumps(results['cities']))
     else:
