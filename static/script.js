@@ -1,14 +1,26 @@
-var grayIcon = L.icon({
-    iconUrl: 'static/images/gray_marker.png',
-    shadowUrl: 'static/images/marker_shadow.png',
+// var grayIcon = L.icon({
+//     iconUrl: 'static/images/gray_marker.png',
+//     shadowUrl: 'static/images/marker_shadow.png',
 
-    iconSize:     icon_size, // size of the icon
-    shadowSize:   [50, 64], // size of the shadow
-    iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
-    shadowAnchor: [4, 62],  // the same for the shadow
-    popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
-});
+//     iconSize:     [15, 50], // size of the icon
+//     shadowSize:   [50 / 3, 64 /3 ], // size of the shadow
+//     iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+//     shadowAnchor: [4, 62],  // the same for the shadow
+//     popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+// });
 
+$(document).ready( function () {
+    $('#table_id').DataTable();
+} );
+
+var grayIcon = new L.Icon({
+    iconUrl: '/static/images/gray_marker2.png',
+    shadowUrl: '/static/images/marker_shadow.png',
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    shadowSize: [41, 41]
+  });
 
 function renderMap(cities) {
     map = L.map('map')
@@ -20,7 +32,7 @@ function renderMap(cities) {
     for(i = 0; i < cities.length; i++){
         let city_name = cities[i]['city'];
         let country_name = cities[i]['country']
-        let marker = L.marker([cities[i]['lat'], cities[i]['long']], {iconUrl: 'static/images/gray_marker.png'}).addTo(map).addTo(featureGroup)
+        let marker = L.marker([cities[i]['lat'], cities[i]['long']], {icon: grayIcon}).addTo(map).addTo(featureGroup)
         .bindPopup(country_name +'<br>' + city_name)
         // Rather than show popup on click, simply show it on mouseover. This way when we click we can search
         .on('mouseover', function (e) {
