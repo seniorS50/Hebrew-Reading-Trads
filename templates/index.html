@@ -22,12 +22,10 @@
         </div>
 
         <div class="col-md-6">
-            <h2>Database | מאגר מידע
-            </h2>
+            <h2>Database | מאגר מידע </h2>
                 <div class="row table-fixed table-striped table-hover position-static table-condensed">
-                    <table class="display" id="table_id">
+                    <table class="display" id="myTable">
                     <!-- <table class="table-fixed display table table-striped table-hover position-static table-condensed" id="tableId table_id"> -->
-
                         <thead>
                             <tr class = "sticky-top">
                                 <th scope="col">Country</th>
@@ -42,16 +40,14 @@
                         </thead>
                         <tbody >
                             {% for file in entry %}
-                                <tr href="/not_israel">
-                                    <!-- use a jinja filter to replace all "_" with a space -->
-                                    <th>{{ file.country }}</th>
-                                    <td>{{ file.city }}</td>
-                                    <td>{{ file.book }}</td>
-                                    <!-- combine chapter and verse into reference -->
-                                    <td>{{ file.ref }}</td>
-                                    <td>{{ file.reader }}</td>
-                                    <td>{{ file.year }}</td>
-                                    <td>{{ file.HULTP }}</td>
+                                <tr>
+                                    <th id="country">{{ file.country }}</th>
+                                    <td id="city">{{ file.city }}</td>
+                                    <td id="book">{{ file.book }}</td>
+                                    <td id="ref">{{ file.ref }}</td>
+                                    <td id="reader">{{ file.reader }}</td>
+                                    <td id="year">{{ file.year }}</td>
+                                    <td id="HULTP">{{ file.HULTP }}</td>
                                     <td>
                                         <input type=button onClick="location.href='../listen?HULTP={{ file.HULTP }}'"
                                         value='listen'>

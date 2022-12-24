@@ -5,7 +5,7 @@ import json
 app = Flask(__name__)
 
 # Pre-load dictionary of files from JSON
-with open('filenames3.json') as f:
+with open('filenames.json') as f:
     data = json.load(f)
 
 # Pre-load dictionary of city locations from JSON

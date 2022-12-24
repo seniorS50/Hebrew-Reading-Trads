@@ -1,26 +1,22 @@
-// var grayIcon = L.icon({
-//     iconUrl: 'static/images/gray_marker.png',
-//     shadowUrl: 'static/images/marker_shadow.png',
-
-//     iconSize:     [15, 50], // size of the icon
-//     shadowSize:   [50 / 3, 64 /3 ], // size of the shadow
-//     iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
-//     shadowAnchor: [4, 62],  // the same for the shadow
-//     popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
-// });
-
 $(document).ready( function () {
-    $('#table_id').DataTable();
+    $('#myTable').DataTable();
 } );
 
-var grayIcon = new L.Icon({
-    iconUrl: '/static/images/gray_marker2.png',
-    shadowUrl: '/static/images/marker_shadow.png',
-    iconSize: [25, 41],
-    iconAnchor: [12, 41],
-    popupAnchor: [1, -34],
-    shadowSize: [41, 41]
-  });
+// // Let's loop through all of the rows in the document
+// $(document).ready( function () {
+//     var rows = $('[id=data]')
+//     // Print all cities
+//     for (let i = 0; i < rows.length; i++) {
+//         city = rows[i].querySelector('#city').innerHTML
+//         if (city=="Herat") {
+//             hideRow(rows[i])
+//         }
+//     }
+
+// })
+function makeGrayscale(marker) {
+    marker._icon.classList.add('grayscale')
+}
 
 function renderMap(cities) {
     map = L.map('map')
@@ -29,10 +25,12 @@ function renderMap(cities) {
     maxZoom: 19,
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     }).addTo(map);
+    // Create an array of all of our markers for easier access
+    var markers = []
     for(i = 0; i < cities.length; i++){
         let city_name = cities[i]['city'];
         let country_name = cities[i]['country']
-        let marker = L.marker([cities[i]['lat'], cities[i]['long']], {icon: grayIcon}).addTo(map).addTo(featureGroup)
+        let marker = L.marker([cities[i]['lat'], cities[i]['long']]).addTo(map).addTo(featureGroup)
         .bindPopup(country_name +'<br>' + city_name)
         // Rather than show popup on click, simply show it on mouseover. This way when we click we can search
         .on('mouseover', function (e) {
@@ -44,48 +42,24 @@ function renderMap(cities) {
         })
         .on("click", function(){
             window.location = "search?q=" + city_name
-        });
-        if(cities.length == 1) {
-            marker.openPopup;
-        }
+        })
+
+        // Now add to an array for easy access
+        markers.push(marker)
     }
     map.fitBounds(featureGroup.getBounds());
     if (map.getZoom() > 5) map.setZoom(5)
-
+    
+    // Adding each marker to grayscale filter via css classlist
+    markers.forEach(marker => {
+        // makeGrayscale(marker)
+    })
 }
 
-// This functions are all solved by featuregroup
-
-// function calcBounds(cities) {
-//     // Instead of calculating the average, calculate the average of the farthest out points
-//     let maxX = cities[0].lat
-//     let minX = cities[0].lat
-//     let maxY = cities[0].long
-//     let minY = cities[0].long
-//     for (let i = 0; i < cities.length; i++) {
-//         let x = cities[i].lat
-//         let y = cities[i].long
-//         if (x > maxX) maxX = x
-//         if (x < minX) maxX = x
-//         if (y > maxY) maxY = y
-//         if (y < minY) minY = y
-//     }
-//     return [[minX * 1.1, minY * 1.1], [maxX * 1.1, maxY * 1.1 ]]
-// }
-
-// function calcCenter(cities) {
-//     // Instead of calculating the average, calculate the average of the farthest out points
-//     let maxX = cities[0].lat
-//     let minX = cities[0].lat
-//     let maxY = cities[0].long
-//     let minY = cities[0].long
-//     for (let i = 0; i < cities.length; i++) {
-//         let x = cities[i].lat
-//         let y = cities[i].long
-//         if (x > maxX) maxX = x
-//         if (x < minX) maxX = x
-//         if (y > maxY) maxY = y
-//         if (y < minY) minY = y
-//     }
-//     return [(minX + maxX) / 2, (minY + maxY) / 2]
-// }
+function hideRow(row) {
+    if (row.style.display === "none") {
+      row.style.display = "block";
+    } else {
+      row.style.display = "none";
+    }
+  }
