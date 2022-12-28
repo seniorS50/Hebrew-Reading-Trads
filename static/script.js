@@ -1,6 +1,6 @@
 $(document).ready(function() {
     // Rather than let DataTables do the ajax, which is annoying, why don't we do it?
-    $('#myTable').DataTable({
+    var table = $('#myTable').DataTable({
       "ajax": {
         "url": "/api/all",
         "dataSrc": "data"
@@ -24,10 +24,38 @@ $(document).ready(function() {
      ]
     })
     .on( 'search.dt', function () {
-        console.log("Search was fired");
+        // Get all of the cities being displayed
+        let focusCities = distinct(table.column( 1, {search: 'applied'}).data())
+        focusMap(focusCities)
     } );
   })
   
+function distinct(array){
+    let distinctArray = []
+    for(let i = 0; i < array.length; i++) {
+        if (!distinctArray.includes(array[i])) {
+            // if not, add it to the unique array
+            distinctArray.push(array[i]);
+        }
+    }
+    return distinctArray
+}
+
+
+// focus the map on cities contained in the search
+function focusMap(focusCities) {
+    // here is the feature group we will focus on:
+    const focusGroup = new L.featureGroup()
+    // Now loop through all the markers, and see if the city is in focusCities
+    for (let i = 0; i < markers.length; i++) {
+        makeGrayscale(markers[i].marker)
+        if (focusCities.includes(markers[i].cityData['city'])) {
+            markers[i].marker.addTo(focusGroup)
+            removeGrayscale(markers[i].marker)
+        }
+    }
+
+}
 
 
 function makeGrayscale(marker) {
@@ -35,15 +63,20 @@ function makeGrayscale(marker) {
 }
 
 
+function removeGrayscale(marker) {
+    marker._icon.classList.remove('grayscale')
+}
+
+
 function renderMap(cities) {
     map = L.map('map')
-    var featureGroup = new L.featureGroup();
+    let featureGroup = new L.featureGroup();
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     }).addTo(map);
-    // Create an array of all of our markers for easier access
-    var markers = []
+    // Create an array of all of our markers for easier access.THey are global now, except in strict mode
+    markers = []
     for(i = 0; i < cities.length; i++){
         let city_name = cities[i]['city'];
         let country_name = cities[i]['country']
@@ -64,25 +97,10 @@ function renderMap(cities) {
             table
                 .search( city_name )
                 .draw();
-            console.log(table.ajax.json())
-            // If we're already centered, zoom in again
-            map.setView(marker.getLatLng(), 5)
-            // TO DO: continue to zoom in on repeated clicks
-            for (let i = 0; i < markers.length; i++) {
-                makeGrayscale(markers[i])
-            }
-            // But not our marker:)
-            marker._icon.classList.remove('grayscale')
-
         })
         // Now add to an array for easy access
-        markers.push({cityInfo: cities[i], marker: marker})
+        markers.push({cityData: cities[i], marker: marker})
     }
     map.fitBounds(featureGroup.getBounds());
-    if (map.getZoom() > 5) map.setZoom(5)
-    
-    // Adding each marker to grayscale filter via css classlist
-    markers.forEach(marker => {
-        // makeGrayscale(marker)
-    })
+    if (map.getZoom() >= 5) map.setZoom(5)
 }
