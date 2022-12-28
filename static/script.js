@@ -54,8 +54,8 @@ function focusMap(focusCities) {
             removeGrayscale(markers[i].marker)
         }
     }
-    map.fitBounds(focusGroup.getBounds())
-    if (map.getZoom() > 5) map.setZoom(5)
+    map.fitBounds(focusGroup.getBounds(), {maxZoom: 5})
+    // if (map.getZoom() > 5) map.setZoom(5)
 
 }
 
