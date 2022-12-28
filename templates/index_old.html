@@ -39,6 +39,21 @@
                             </tr>
                         </thead>
                         <tbody>
+                            {% for file in entry %}
+                                <tr id="data">
+                                    <th id="country">{{ file.country }}</th>
+                                    <td id="city">{{ file.city }}</td>
+                                    <!-- <td id="book">{{ file.book }}</td> -->
+                                    <td id="ref">{{ file.book }} {{ file.ref }}</td>
+                                    <td id="reader">{{ file.reader }}</td>
+                                    <td id="year">{{ file.year }}</td>
+                                    <td id="HULTP">{{ file.HULTP }}</td>
+                                    <td>
+                                        <input type=button onClick="location.href='../listen?HULTP={{ file.HULTP }}'"
+                                        value='listen'>
+                                    </td>
+                                </tr>
+                            {% endfor %}
                         </tbody>
                     </table>
                 </div>

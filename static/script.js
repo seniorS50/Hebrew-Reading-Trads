@@ -1,22 +1,39 @@
-$(document).ready( function () {
-    $('#myTable').DataTable();
-} );
+$(document).ready(function() {
+    // Rather than let DataTables do the ajax, which is annoying, why don't we do it?
+    $('#myTable').DataTable({
+      "ajax": {
+        "url": "/api/all",
+        "dataSrc": "data"
+      },
+      "columns": [
+        { "data": "country" },
+        { "data": "city" },
+        { "data": "ref" },
+        { "data": "reader" },
+        { "data": "year" },
+        { "data": "HULTP" },
+      ],
+      // Set up the last column as the hyperlink to the listen. TODO: Turn into a button and a GET request
+      "columnDefs": [ {
+        "targets": 6,
+        "data": "HULTP",
+        "render": function ( data ) {
+            return '<a href="/listen?HULTP='+ data+'">Play</a>';
+        }
+      },
+     ]
+    })
+    .on( 'search.dt', function () {
+        console.log("Search was fired");
+    } );
+  })
+  
 
-// // Let's loop through all of the rows in the document
-// $(document).ready( function () {
-//     var rows = $('[id=data]')
-//     // Print all cities
-//     for (let i = 0; i < rows.length; i++) {
-//         city = rows[i].querySelector('#city').innerHTML
-//         if (city=="Herat") {
-//             hideRow(rows[i])
-//         }
-//     }
 
-// })
 function makeGrayscale(marker) {
     marker._icon.classList.add('grayscale')
 }
+
 
 function renderMap(cities) {
     map = L.map('map')
@@ -40,12 +57,26 @@ function renderMap(cities) {
         .on('mouseout', function (e) {
             this.closePopup();
         })
-        .on("click", function(){
-            window.location = "search?q=" + city_name
-        })
+        .on("click", function(e){
+            // Re-render table with AJAX
+            // Clear table using DataTables.js
+            let table = $('#myTable').DataTable();
+            table
+                .search( city_name )
+                .draw();
+            console.log(table.ajax.json())
+            // If we're already centered, zoom in again
+            map.setView(marker.getLatLng(), 5)
+            // TO DO: continue to zoom in on repeated clicks
+            for (let i = 0; i < markers.length; i++) {
+                makeGrayscale(markers[i])
+            }
+            // But not our marker:)
+            marker._icon.classList.remove('grayscale')
 
+        })
         // Now add to an array for easy access
-        markers.push(marker)
+        markers.push({cityInfo: cities[i], marker: marker})
     }
     map.fitBounds(featureGroup.getBounds());
     if (map.getZoom() > 5) map.setZoom(5)
@@ -55,11 +86,3 @@ function renderMap(cities) {
         // makeGrayscale(marker)
     })
 }
-
-function hideRow(row) {
-    if (row.style.display === "none") {
-      row.style.display = "block";
-    } else {
-      row.style.display = "none";
-    }
-  }
